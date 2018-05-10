@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="0x01 bundle
+bundle实质是其实就是一个有后缀(.bundle)的文件夹
+
+在制作framework或者.a时,由于一些资源文件(图片,音频,storyboard,xib,xcassets,plist…等等)并不能直接编译到可执行文件中,这时就需要我们提供一个容器来管理这些资源文件,这就是我们今天要说的bundle">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="_Finder丶Tiwk">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="走近科学之静态库(三)"/>
+    
+
+    <!--Open Graph Description-->
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="_Finder丶Tiwk"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article" />
+    
+
+    <!--Page Cover-->
+    
+
+    <meta name="twitter:card" content="summary" />
+    
+
+    <!-- Title -->
+    
+
+    <title>走近科学之静态库(三) - _Finder丶Tiwk</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Google Analytics -->
+    
+
+
+</head>
+
+
+<body>
+
+<div class="bg-gradient"></div>
+<div class="bg-pattern"></div>
+
+<!-- Menu -->
+<!--Menu Links and Overlay-->
+<div class="menu-bg">
+    <div class="menu-container">
+        <ul>
+            
+            <li class="menu-item">
+                <a href="/">
+                    Home
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/categories">
+                    Categories
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/tags">
+                    Tags
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/archives">
+                    Archives
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/about.html">
+                    About
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+<!--Hamburger Icon-->
+<nav>
+    <a href="#menu"></a>
+</nav>
+
+<div class="container">
+
+    <!-- Main Content -->
+    <div class="row">
+    <div class="col-sm-12">
+
+        <!--Title and Logo-->
+        <header>
+    <div class="logo">
+        <a href="/"><i class="logo-icon fa fa-paper-plane" aria-hidden="true"></i></a>
+        
+    </div>
+</header>
+
+        <section class="main">
+            
+<div class="post">
+
+    <div class="post-header">
+        <h1 class="title">
+            <a href="/2016/05/18/走近科学之静态库(三)/">
+                走近科学之静态库(三)
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2016-05-18</span>
+            
+            
+            
+                <span class="category">
+                    <a href="/categories/Objective-C/">Objective-C</a>
+                </span>
+            
+        </div>
+    </div>
+
+    <div class="content">
+
+        <!-- Gallery -->
+        
+
+        <!-- Post Content -->
+        <h2 id="0x01-bundle"><a href="#0x01-bundle" class="headerlink" title="0x01 bundle"></a>0x01 bundle</h2><blockquote>
+<p>bundle实质是其实就是一个有后缀(.bundle)的文件夹</p>
+</blockquote>
+<p>在制作framework或者.a时,由于一些资源文件(图片,音频,storyboard,xib,xcassets,plist…等等)并不能直接编译到可执行文件中,这时就需要我们提供一个容器来管理这些资源文件,这就是我们今天要说的bundle</p>
+<a id="more"></a>
+<h2 id="0x02-How-to-make-it"><a href="#0x02-How-to-make-it" class="headerlink" title="0x02 How to make it"></a>0x02 How to make it</h2><h3 id="2-1-创建bundle工程"><a href="#2-1-创建bundle工程" class="headerlink" title="2.1 创建bundle工程"></a>2.1 创建bundle工程</h3><p>由于苹果爹并没有提供iOS平台制作bundle的工程模板,只提供了OS X系统的工程模板,所以第一步,我们先创建一个OS X系统下的bundle工程模板.<br><img src="http://7xtd84.com1.z0.glb.clouddn.com/xcodeBundleTemplate01.png" alt=""><br><img src="http://7xtd84.com1.z0.glb.clouddn.com/xcodeBundleTemplate02.png" alt=""></p>
+<p>创建好工程后我们需要做以下设置,使之能完美运行在iOS平台:</p>
+<ul>
+<li><p>默认情况下，有两种resolutions的图片可以产生一些有趣的现象。例如，当你导入一个retina @2x版本的图片时，普通版的和Retina版的将会合并成一个多resolution的TIFF（标签图像文件格式，<code>Tagged Image File Format</code>）。这不是一件好事。搜索hidpi将<code>COMBINE_HIDPI_IMAGES</code>设置为NO。</p>
+</li>
+<li><p>确保<code>Build Setting -&gt; targeted device family</code>设置为1,2, 或者将工程通用设置里的 <code>Deployment info</code>里的<code>devices</code>设置为<code>Universal</code>,这样使你的bundle在iPad和iPhone下都可以使用,假如只设置了iPhone也就是 <code>targeted device family</code>为1的时候,那么当iPad工程使用这个bundle的时候,上传AppStore会被检测出错误,导致上不了架</p>
+</li>
+</ul>
+<h3 id="2-2-添加资源文件"><a href="#2-2-添加资源文件" class="headerlink" title="2.2 添加资源文件"></a>2.2 添加资源文件</h3><p>然后将要放入bundle的资源文件添加到工程中,并确认这些资源文件都加入到工程的 <code>Build Phases -&gt; Copy Rundle Resources</code>中</p>
+<h3 id="2-3-编译打包"><a href="#2-3-编译打包" class="headerlink" title="2.3 编译打包"></a>2.3 编译打包</h3><p>编译过程中我们需要了解一下下面几点</p>
+<ul>
+<li><p>.xcassets将会被编译成为 .car文件</p>
+</li>
+<li><p>.storyboard文件将会被编译成 .storyboardc文件,storyboard文件中设置图片可以直接引用.xcassets中的图片</p>
+</li>
+<li><p>.xib文件将会被编译成 .nib文件</p>
+</li>
+<li><p>.storyboard文件和.xib文件可以直接与库中的文件连线操作,这些信息将会编译进相应的.storyboardc和.nib</p>
+</li>
+</ul>
+<h2 id="0x03-How-to-use-it"><a href="#0x03-How-to-use-it" class="headerlink" title="0x03 How to use it"></a>0x03 How to use it</h2><h3 id="3-1-直接加入到bundle里的图片"><a href="#3-1-直接加入到bundle里的图片" class="headerlink" title="3.1 直接加入到bundle里的图片"></a>3.1 直接加入到bundle里的图片</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">//加载方法一</span><br><span class="line">&#123;</span><br><span class="line">  NSString *path = [[NSBundle mainBundle] pathForResource:@&quot;BundleName&quot; ofType:@&quot;bundle&quot;];</span><br><span class="line">  NSBundle *bundle = [NSBundle bundleWithPath:path];</span><br><span class="line">  NSString *imagePath = [bundle pathForResource:@&quot;imageName&quot; ofType:@&quot;png&quot;];</span><br><span class="line">  return [UIImage imageWithContentsOfFile:imagePath];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//加载方法二</span><br><span class="line">&#123;</span><br><span class="line">  return  [UIImage imageNamed:@&quot;BundleName.bundle/imageName&quot;];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//加载方法三</span><br><span class="line">&#123;</span><br><span class="line">  NSString *path = [[NSBundle mainBundle] pathForResource:@&quot;BundleName&quot; ofType:@&quot;bundle&quot;];</span><br><span class="line">  NSBundle *bundle = [NSBundle bundleWithPath:path];</span><br><span class="line">  //此API只兼容iOS8+</span><br><span class="line">  return [UIImage imageNamed:imageName</span><br><span class="line">                    inBundle:bundle compatibleWithTraitCollection:nil];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="3-2-plist-音频-视频文件-其它文件"><a href="#3-2-plist-音频-视频文件-其它文件" class="headerlink" title="3.2 plist/音频/视频文件/其它文件"></a>3.2 plist/音频/视频文件/其它文件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">NSString *path = [[NSBundle mainBundle] pathForResource:@&quot;BundleName&quot; ofType:@&quot;bundle&quot;];</span><br><span class="line">NSBundle *bundle = [NSBundle bundleWithPath:path];</span><br><span class="line">NSString *filePath = [bundle pathForResource:@&quot;resourceName&quot; ofType:@&quot;suffix&quot;];</span><br><span class="line"></span><br><span class="line">//plist</span><br><span class="line">[NSDictionary dictionaryWithContentsOfFile:filePath];</span><br><span class="line">[NSArray arrayWithContentsOfFile:filePath];</span><br><span class="line"></span><br><span class="line">//音频视频文件也通过filePath来加载</span><br></pre></td></tr></table></figure>
+<h3 id="3-3-storyboard"><a href="#3-3-storyboard" class="headerlink" title="3.3 storyboard"></a>3.3 storyboard</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  NSString *path = [[NSBundle mainBundle] pathForResource:@&quot;BundleName&quot; ofType:@&quot;bundle&quot;];</span><br><span class="line">  NSBundle *bundle = [NSBundle bundleWithPath:path];</span><br><span class="line">  return [UIStoryboard storyboardWithName:@&quot;storyboardName&quot; bundle:bundle];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="3-4-xib"><a href="#3-4-xib" class="headerlink" title="3.4 xib"></a>3.4 xib</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  NSString *path = [[NSBundle mainBundle] pathForResource:@&quot;BundleName&quot; ofType:@&quot;bundle&quot;];</span><br><span class="line">  NSBundle *bundle = [NSBundle bundleWithPath:path];</span><br><span class="line">  return [bundle loadNibNamed:@&quot;xibName&quot; owner:nil options:nil];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="0x04-Give-u-some-Cookies"><a href="#0x04-Give-u-some-Cookies" class="headerlink" title="0x04 Give u some Cookies"></a>0x04 Give u some Cookies</h2><blockquote>
+<p>下面是我经常用来从库中加载bundle文件中的资源文件几个方法,希望大家喜欢</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line">//</span><br><span class="line">//  NSBundle+FTUIKit.h</span><br><span class="line">//  FTFoundation</span><br><span class="line">//</span><br><span class="line">//  Created by FinderTiwk on 2/04/2016.</span><br><span class="line"></span><br><span class="line">//NSBundle+FTUIKit.h</span><br><span class="line"></span><br><span class="line">#import &lt;Foundation/Foundation.h&gt;</span><br><span class="line"></span><br><span class="line">FOUNDATION_EXPORT NSString *const FTUIKitBundleName;</span><br><span class="line">@interface NSBundle (FTUIKit)</span><br><span class="line"></span><br><span class="line">+ (instancetype)ft_bundleWithName:(NSString *)bundleName;</span><br><span class="line"></span><br><span class="line">EXTERN_API_C(UIImage *) imageInBundle(NSString *bundleName,NSString *imageName);</span><br><span class="line">EXTERN_API_C(UIStoryboard *) storyBoardInBundle(NSString *bundleName,NSString *storyBoardName);</span><br><span class="line">EXTERN_API_C(NSArray *) xibArrayInBundle(NSString *bundleName,NSString *xibName);</span><br><span class="line"></span><br><span class="line">@end</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//NSBundle+FTUIKit.m</span><br><span class="line"></span><br><span class="line">#import &quot;NSBundle+FTUIKit.h&quot;</span><br><span class="line"></span><br><span class="line">NSString *const FTUIKitBundleName = @&quot;FTUIKit&quot;;</span><br><span class="line">@implementation NSBundle (FTUIKit)</span><br><span class="line"></span><br><span class="line">+ (instancetype)ft_bundleWithName:(NSString *)bundleName&#123;</span><br><span class="line">    NSParameterAssert(bundleName);</span><br><span class="line">    NSString *bundeFullName;</span><br><span class="line">    if ([bundleName rangeOfString:@&quot;.bundle&quot;].location == NSNotFound) &#123;</span><br><span class="line">        bundeFullName = [NSString stringWithFormat:@&quot;%@.bundle&quot;,bundleName];</span><br><span class="line">    &#125;else&#123;</span><br><span class="line">        bundeFullName = bundleName;</span><br><span class="line">    &#125;</span><br><span class="line">    NSString *bundlePath = [[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:bundeFullName];</span><br><span class="line">    return [NSBundle bundleWithPath:bundlePath];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">EXTERN_API_C(UIImage *) imageInBundle(NSString *bundleName,NSString *imageName)&#123;</span><br><span class="line">    NSCParameterAssert(imageName);</span><br><span class="line">    NSBundle *bundle = [NSBundle ft_bundleWithName:bundleName];</span><br><span class="line">    if (!bundle) &#123;</span><br><span class="line">        return [UIImage imageNamed:imageName];</span><br><span class="line">    &#125;</span><br><span class="line">    return [UIImage imageNamed:imageName</span><br><span class="line">                      inBundle:bundle</span><br><span class="line"> compatibleWithTraitCollection:nil];</span><br><span class="line">&#125;</span><br><span class="line">EXTERN_API_C(UIStoryboard *) storyBoardInBundle(NSString *bundleName,NSString *storyBoardName)&#123;</span><br><span class="line">    NSCParameterAssert(storyBoardName);</span><br><span class="line">    NSBundle *bundle = [NSBundle ft_bundleWithName:bundleName];</span><br><span class="line">    return [UIStoryboard storyboardWithName:storyBoardName bundle:bundle];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">EXTERN_API_C(NSArray *) xibArrayInBundle(NSString *bundleName,NSString *xibName)&#123;</span><br><span class="line">    NSCParameterAssert(xibName);</span><br><span class="line">    NSBundle *bundle = [NSBundle ft_bundleWithName:bundleName];</span><br><span class="line">    NSArray *array   = [bundle loadNibNamed:xibName owner:nil options:nil];;</span><br><span class="line">    if (!array) &#123;</span><br><span class="line">        array = [[NSBundle mainBundle] loadNibNamed:xibName owner:nil options:nil];</span><br><span class="line">    &#125;</span><br><span class="line">    return array;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+
+    
+        <div class="post-tags">
+            <i class="fa fa-tags" aria-hidden="true"></i>
+            <a href="/tags/静态库/">#静态库</a>
+        </div>
+    
+
+    <!-- Comments -->
+    
+
+</div>
+        </section>
+
+    </div>
+</div>
+
+
+</div>
+
+<!-- Footer -->
+<div class="push"></div>
+
+<footer class="footer-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 footer-about">
+                <h2>About</h2>
+                <p>
+                    『目前就职于爱客仕网络科技有限公司,任高级iOS开发工程师</br>  喜欢音乐,喜欢游戏</br>   热爱和平,热爱大自然』
+                </p>
+            </div>
+            
+    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 recent-posts">
+        <h2>Recent Posts</h2>
+        <ul>
+            
+            <li>
+                <a class="footer-post" href="/2016/05/18/走近科学之静态库(三)/">走近科学之静态库(三)</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2016/05/18/走近科学之静态库(二)/">走近科学之静态库(二)</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2016/05/18/走近科学之静态库(一)/">走近科学之静态库(一)</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2016/04/21/HelloWorld/">Hello World🌴</a>
+            </li>
+            
+        </ul>
+    </div>
+
+
+
+            
+<div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 footer-categories">
+    <h2>Categories</h2>
+    <ul>
+        
+        <li>
+            <a class="footer-post" href="/categories/Objective-C/">Objective-C</a>
+        </li>
+        
+    </ul>
+</div>
+
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <ul class="list-inline footer-social-icons">
+                    
+                    <li class="list-inline-item">
+                        <a href="https://github.com/FinderTiwk">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-github"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="mailto:136652711@qq.com">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-envelope-o"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="footer-copyright">
+                    Copyright © 2018 <a href="https://github.com/FinderTiwk">FinderTiwk</a>. All rights reserved. 
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- After footer scripts -->
+
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Tween Max -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.18.5/TweenMax.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Custom JavaScript -->
+<script src="/js/main.js"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>
