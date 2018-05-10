@@ -10,10 +10,11 @@
 
     <!--Description-->
     
-        <meta name="description" content="0x00 什么是库库是共享代码的方式,通俗的讲就是把一个或者多个功能的实现相关代码打包成一个可供其它人直接使用的package.从本质上来讲库是一种可执行代码片段的二进制格式,可以被加载到内存中直接使用.
+        <meta name="description" content="0x00 What?库是共享代码的方式,通俗的讲就是把一个或者多个功能的实现相关代码打包成一个可供其它人直接使用的package.从本质上来讲库是一种可执行代码片段的二进制格式,可以被加载到内存中直接使用.
 iOS中的库分为静态库和动态库.
 
-静态库有.a(库的api头文件和.a可执行文件组成)和.f">
+静态库有.a(库的api头文件和.a可执行文件组成)和.framework(其实就是把可执行文件和.头文件都包含在里一个*.framework文件夹里)两种形式,实际应用中大多数第三库都以.a的形式提供.
+动态库有.dylib和.framework形式,后来苹果又使用.tbd形式取代了.dylib.">
     
 
     <!--Author-->
@@ -167,12 +168,46 @@ iOS中的库分为静态库和动态库.
         
 
         <!-- Post Content -->
-        <h2 id="0x00-什么是库"><a href="#0x00-什么是库" class="headerlink" title="0x00 什么是库"></a>0x00 什么是库</h2><p>库是共享代码的方式,通俗的讲就是把一个或者多个功能的实现相关代码打包成一个可供其它人直接使用的package.从本质上来讲库是一种可执行代码片段的二进制格式,可以被加载到内存中直接使用.</p>
+        <h2 id="0x00-What"><a href="#0x00-What" class="headerlink" title="0x00 What?"></a>0x00 What?</h2><p>库是共享代码的方式,通俗的讲就是把一个或者多个功能的实现相关代码打包成一个可供其它人直接使用的package.从本质上来讲库是一种可执行代码片段的二进制格式,可以被加载到内存中直接使用.</p>
 <p>iOS中的库分为静态库和动态库.</p>
 <ul>
 <li>静态库有.a(库的api头文件和.a可执行文件组成)和.framework(其实就是把可执行文件和.头文件都包含在里一个*.framework文件夹里)两种形式,实际应用中大多数第三库都以.a的形式提供.</li>
 <li>动态库有.dylib和.framework形式,后来苹果又使用.tbd形式取代了.dylib.</li>
 </ul>
+<a id="more"></a>
+<h3 id="1-0-静态库与动态库的区别"><a href="#1-0-静态库与动态库的区别" class="headerlink" title="1.0 静态库与动态库的区别"></a>1.0 静态库与动态库的区别</h3><blockquote>
+<p>库的加载时机: 在pre-main阶段,动态为由动态库加载器来加载到内存中</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Total pre-main time: 156.41 milliseconds (100.0%)</span><br><span class="line">         dylib loading time:  45.14 milliseconds (28.8%)</span><br><span class="line">        rebase/binding time:  27.77 milliseconds (17.7%)</span><br><span class="line">            ObjC setup time:  53.95 milliseconds (34.4%)</span><br><span class="line">           initializer time:  29.42 milliseconds (18.8%)</span><br><span class="line">           slowest intializers :</span><br><span class="line">               libSystem.dylib :   2.79 milliseconds (1.7%)</span><br><span class="line">                     xxx.dylib :  16.05 milliseconds (10.2%)</span><br></pre></td></tr></table></figure>
+<p>静态库:</p>
+<ul>
+<li>程序链接时会完整的拷贝到可执行文件中,多个程序多次使用会在内存中有多份</li>
+</ul>
+<p>动态库:</p>
+<ul>
+<li>程序链接时不会拷贝到可执行文件中,只有当程序运行时,系统会动态的加载到内在中,供程序调用,系统只会加载一次,如果其它程序也用到,则会在缓存中找,如果没有找到再加载到内存中,内存中只有一份.(苹果不允许开发者使用动态库)</li>
+</ul>
+<h2 id="0x02-Why"><a href="#0x02-Why" class="headerlink" title="0x02 Why?"></a>0x02 Why?</h2><ul>
+<li>闭源: 隐藏源码实现,比如要对外开放SDK</li>
+<li>节省编译时间: 由于静态库是已经编译好的可执行文件,在工程中使用时相对直接添加源码,省去了编译时间</li>
+<li>方便使用共享</li>
+</ul>
+<h2 id="0x03-How-to-make-a-library"><a href="#0x03-How-to-make-a-library" class="headerlink" title="0x03 How to make a library?"></a>0x03 How to make a library?</h2><blockquote>
+<p>这里就不展开写了,网上一搜一大堆</p>
+</blockquote>
+<h3 id="3-1-Some-principles-for-making-library"><a href="#3-1-Some-principles-for-making-library" class="headerlink" title="3.1 Some principles for making library"></a>3.1 Some principles for making library</h3><ul>
+<li>完善的文档: 可以方便别人快速参阅的使用,最好再能提供一个demo</li>
+<li>整洁的代码: 包括优雅的代码风格,漂亮的命名规范,良好的代码组织方式,详细的注释(除非你能做到代码自注释),最好是0 Warning,这毕竟是你的库的门面</li>
+<li>多CPU架构支持: 这能给一些开发者减少不少麻烦</li>
+<li>详尽的测试: 尽可能多的为你的每个API编写单元测试,这不仅能保证你的库的质量,也会给后面修改维护创建舒服的环境.</li>
+</ul>
+<h3 id="3-2-Some-Tips"><a href="#3-2-Some-Tips" class="headerlink" title="3.2 Some Tips"></a>3.2 Some Tips</h3><ol>
+<li><p>发布编译库工程的时候,将schem调整为Release模式</p>
+</li>
+<li><p>当你看到如下警告时,设置工程的Build Setting里Enable Clang Module Debuging -&gt;NO</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">note: Linking a static library that was built with -gmodules, but the module cache was not found. Redistributable static libraries should never be built with module debugging enabled. The debug experience will be degraded due to incomplete debug information.</span><br><span class="line">warning: /var/folders/nm/y29gjrfd64b8b8y0cgx5hhbc0000gn/C/org.llvm.clang.xxxxxx/ModuleCache/2VU6G8UDA25RM/CoreFoundation-271U74KHGUIO4.pcm: No such file or directory</span><br><span class="line">...</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
 
     </div>
 
