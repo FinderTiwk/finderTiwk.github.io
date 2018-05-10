@@ -200,12 +200,13 @@ iOS中的库分为静态库和动态库.
 <li>整洁的代码: 包括优雅的代码风格,漂亮的命名规范,良好的代码组织方式,详细的注释(除非你能做到代码自注释),最好是0 Warning,这毕竟是你的库的门面</li>
 <li>多CPU架构支持: 这能给一些开发者减少不少麻烦</li>
 <li>详尽的测试: 尽可能多的为你的每个API编写单元测试,这不仅能保证你的库的质量,也会给后面修改维护创建舒服的环境.</li>
+<li>尽可能不要使用第三方库: 因为有可能你使用第三方库并将它库编译到你的库中,使用者的工程中也使用了这个库,造成冲突.如果要使用最好将第三方库中的类名和前缀都改一下,还有一些全局变量.</li>
 </ul>
 <h3 id="3-2-Some-Tips"><a href="#3-2-Some-Tips" class="headerlink" title="3.2 Some Tips"></a>3.2 Some Tips</h3><ol>
 <li><p>发布编译库工程的时候,将schem调整为Release模式</p>
 </li>
 <li><p>当你看到如下警告时,设置工程的Build Setting里Enable Clang Module Debuging -&gt;NO</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">note: Linking a static library that was built with -gmodules, but the module cache was not found. Redistributable static libraries should never be built with module debugging enabled. The debug experience will be degraded due to incomplete debug information.</span><br><span class="line">warning: /var/folders/nm/y29gjrfd64b8b8y0cgx5hhbc0000gn/C/org.llvm.clang.xxxxxx/ModuleCache/2VU6G8UDA25RM/CoreFoundation-271U74KHGUIO4.pcm: No such file or directory</span><br><span class="line">...</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">note: Linking a static library that was built with -gmodules,</span><br><span class="line">but the module cache was not found.</span><br><span class="line">Redistributable static libraries should never be built with module debugging enabled.</span><br><span class="line">The debug experience will be degraded due to incomplete debug information.</span><br><span class="line">warning: /var/folders/nm/y29gjrfd64b8b8y0cgx5hhbc0000gn/C/org.llvm.clang.xxxxxx/ModuleCache/2VU6G8UDA25RM/CoreFoundation-271U74KHGUIO4.pcm: No such file or directory</span><br><span class="line">...</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
 
@@ -248,6 +249,10 @@ iOS中的库分为静态库和动态库.
     <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 recent-posts">
         <h2>Recent Posts</h2>
         <ul>
+            
+            <li>
+                <a class="footer-post" href="/2016/05/18/走近科学之静态库(二)/">走近科学之静态库(二)</a>
+            </li>
             
             <li>
                 <a class="footer-post" href="/2016/05/18/走近科学之静态库(一)/">走近科学之静态库(一)</a>

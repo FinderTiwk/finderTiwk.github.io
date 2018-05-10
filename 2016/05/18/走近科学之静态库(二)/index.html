@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="0x00 进击的.a/.framework
+那一天，人們回想起了在它们支配下的恐懼…以及被它们蹂躏屈辱……">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="_Finder丶Tiwk">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="走近科学之静态库(二)"/>
+    
+
+    <!--Open Graph Description-->
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="_Finder丶Tiwk"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article" />
+    
+
+    <!--Page Cover-->
+    
+
+    <meta name="twitter:card" content="summary" />
+    
+
+    <!-- Title -->
+    
+
+    <title>走近科学之静态库(二) - _Finder丶Tiwk</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Google Analytics -->
+    
+
+
+</head>
+
+
+<body>
+
+<div class="bg-gradient"></div>
+<div class="bg-pattern"></div>
+
+<!-- Menu -->
+<!--Menu Links and Overlay-->
+<div class="menu-bg">
+    <div class="menu-container">
+        <ul>
+            
+            <li class="menu-item">
+                <a href="/">
+                    Home
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/categories">
+                    Categories
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/tags">
+                    Tags
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/archives">
+                    Archives
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/about.html">
+                    About
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+<!--Hamburger Icon-->
+<nav>
+    <a href="#menu"></a>
+</nav>
+
+<div class="container">
+
+    <!-- Main Content -->
+    <div class="row">
+    <div class="col-sm-12">
+
+        <!--Title and Logo-->
+        <header>
+    <div class="logo">
+        <a href="/"><i class="logo-icon fa fa-paper-plane" aria-hidden="true"></i></a>
+        
+    </div>
+</header>
+
+        <section class="main">
+            
+<div class="post">
+
+    <div class="post-header">
+        <h1 class="title">
+            <a href="/2016/05/18/走近科学之静态库(二)/">
+                走近科学之静态库(二)
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2016-05-18</span>
+            
+            
+            
+                <span class="category">
+                    <a href="/categories/Objective-C/">Objective-C</a>
+                </span>
+            
+        </div>
+    </div>
+
+    <div class="content">
+
+        <!-- Gallery -->
+        
+
+        <!-- Post Content -->
+        <h2 id="0x00-进击的-a-framework"><a href="#0x00-进击的-a-framework" class="headerlink" title="0x00 进击的.a/.framework"></a>0x00 进击的.a/.framework</h2><blockquote>
+<p>那一天，人們回想起了<br>在它们支配下的恐懼…<br>以及被它们蹂躏屈辱……</p>
+</blockquote>
+<a id="more"></a>
+<h2 id="0x01-Do-u-remember-these"><a href="#0x01-Do-u-remember-these" class="headerlink" title="0x01 Do u remember these?"></a>0x01 Do u remember these?</h2><h3 id="1-0-Undefined-symbols-for-architecture"><a href="#1-0-Undefined-symbols-for-architecture" class="headerlink" title="1.0 Undefined symbols for architecture"></a>1.0 Undefined symbols for architecture</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">Undefined symbols <span class="keyword">for</span> architecture i386/x86_64:</span><br><span class="line">  <span class="string">"_OBJC_CLASS_<span class="variable">$_FuckingClazz</span>"</span>, referenced from:</span><br><span class="line">      objc-class-ref <span class="keyword">in</span> ViewController.o</span><br><span class="line">  ...</span><br><span class="line">  ...</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Undefined symbols <span class="keyword">for</span> architecture armv7/armv7s/arm64:</span><br><span class="line">  <span class="string">"_OBJC_CLASS_<span class="variable">$_FuckingClazz</span>"</span>, referenced from:</span><br><span class="line">      objc-class-ref <span class="keyword">in</span> ViewController.o</span><br><span class="line">  ...</span><br><span class="line">  ...</span><br></pre></td></tr></table></figure>
+<p><img src="http://7xtd84.com1.z0.glb.clouddn.com/baoman_004.png" alt=""></p>
+<p><strong>这TM是什么鬼东西？</strong></p>
+<p>要想解决这个Error,我们首先要明白为什么会出现这个错误。先来科普一下iOS设备CPU指令集：</p>
+<ul>
+<li>i386: 对应32位模拟器的CPU</li>
+<li>x86_64: 对应64位模拟器的CPU</li>
+<li>armv7/armv7s: 对应32位真机设备的CPU</li>
+<li>arm64: 对应64位真机设备的CPU</li>
+</ul>
+<p>　　知道了上面的知识,我们再来看看上面的错误描述, 意思就是说在某种CPU指令集下没有找到对应的符号（<strong>“_OBJC_CLASS_$_FuckingClazz”</strong>）,出现这种错误一般是你引用的第三方库不支持某种CPU指令集，那我们就在工程中搜索一下 ‘FuckingClazz’ 看看这个东西是对应那个库。经过搜索后发现他对应libFuckingLibray.a这个库。这个时候你的心里就会飘过千万只羊驼，问候了千万次库提供方。</p>
+<p>骂完之后平静下来，生活还得继续，代码还得写。那我们该怎么办呢？</p>
+<ol>
+<li>去找库提供方让他提供支持多指令集的库(如果库提供方有着良好的程序员自我修养的话，那下面的内容你可以不用看了)。</li>
+<li>自己动手解决</li>
+</ol>
+<p>下面我们就来讲讲怎么动手解决</p>
+<p>首先先来个进阶知识,打开终端输入以下命令：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$: nm a/b/libFuckingLibray.a</span><br></pre></td></tr></table></figure></p>
+<p>这个时候你会发现一堆花花绿绿的看不懂的东西，别急，找到”_OBJC_CLASS_$_FuckingClazz” 复制，在上面命令的执行结果里搜索一发。<br>你会看到：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">libFuckingLibray.a(FuckingLibray.o) (<span class="keyword">for</span> architecture armv7):</span><br><span class="line">...</span><br><span class="line">...</span><br><span class="line">libFuckingLibray.a(FuckingLibray.o) (<span class="keyword">for</span> architecture arm64):</span><br></pre></td></tr></table></figure>
+<p>这个时候你会发现，哦原来这个库只支持armv7和arm64两种指令集。</p>
+<blockquote>
+<p>具体nm命令和更高级的用法，在这里就不细说了自己去问男人:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$: man nm</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<p>当然还有更简单的一个命令可以直接查看一个库支持哪几种CPU指令集：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$: lipo -info a/b/libFuckingLibray.a</span><br><span class="line">Architectures <span class="keyword">in</span> the fat file: libFuckingLibray.a are: armv7 arm64</span><br></pre></td></tr></table></figure></p>
+<p>好了，找到原因了，那我们来手动为这个FuckingLibray来增加i386和x86_64的支持吧。</p>
+<ol>
+<li>新建一个EunuchFuckLibray的静态库工程</li>
+<li>将所有和FuckingLibray暴露出来的头文件(.h)导入到静态库工程，并设置为public的。然后创建每个.h对应的.m文件。</li>
+<li>为了消除一些方法没实现之类的警告,我们在.m里实现所有.h的声明的方法，方法具体实现，随便写(一般返回值为void的 可以在方法体内 NSLog(@”[FuckingLibray]:&lt;%s&gt; SDK不支持模块器! “,<strong>FUNCTION</strong>);，有返回值的返回0/NO/nil之类的);</li>
+<li>将此静态库编译成支持FuckingLibray缺少的那一部分CPU指令集的库</li>
+<li><p>最后我们将这个编译好的库与之前的太监库合并：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$: lipo -create a/b/libFuckingLibray.a c/d/libEunuchFuckLibray.a -output ~/Desktop/libFuckingLibray.a</span><br><span class="line"><span class="comment">#执行完这条命令后，你会发现你的桌面上多了一个libFuckingLibray.a文件</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>将工程中的libFuckingLibray.a替换成你刚才生成的</p>
+</li>
+<li>command + R</li>
+</ol>
+<p><img src="http://7xtd84.com1.z0.glb.clouddn.com/baoman_003.jpg" alt=""></p>
+<h3 id="1-2-duplicate-symbol-OBJC-IVAR-XXXXX-opacity-in"><a href="#1-2-duplicate-symbol-OBJC-IVAR-XXXXX-opacity-in" class="headerlink" title="1.2 duplicate symbol _OBJC_IVAR_$_XXXXX._opacity in"></a>1.2 duplicate symbol _OBJC_IVAR_$_XXXXX._opacity in</h3><blockquote>
+<p>出现这种链接错误,一种的是工程中的确存在重复的文件或者全局变量定义,这种情况手动查找到删除解决,本文不再多说.另外一工程中的文件与第三方静态库中的文件重复,本文主要针对这种情况给予解决方案</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">duplicate symbol _OBJC_IVAR_<span class="variable">$_MBProgressHUD</span>._opacity <span class="keyword">in</span>:</span><br><span class="line">    /Users/findertiwk/Library/Developer/Xcode/DerivedData/FuckLibrayProject-gyeissovcremddekzpznuxjsevom/Build/Intermediates.noindex/FuckLibrayProject.build/Debug-iphonesimulator/FuckLibrayProject.build/Objects-normal/x86_64/MBProgressHUD.o</span><br><span class="line">    /Users/findertiwk/Workspace/Github/静态库博客/FuckLibrayProject/FuckLibrayProject/Vendor/FuckLibray/libFuckingLibray.a(MBProgressHUD.o)</span><br><span class="line">duplicate symbol _OBJC_IVAR_<span class="variable">$_MBBackgroundView</span>._effectView <span class="keyword">in</span>:</span><br><span class="line">...</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<p>看到这个不要慌,细心看一下错误,意思是说 <code>_OBJC_IVAR_$_XXXXX._opacity</code>这个符号 重复定义了.</p>
+<p>那我们来在工程中找一下<code>XXXXX</code> 这个类,结果发现是一个我们引用的第三方库,再看一下,我们的工程中只有一份啊,怎么会重复定义,把这个库放到其它的工程中就没有问题.这个时候开始怀疑人生了,到底哪里出了错.</p>
+<p>那我们只好慢慢排查,当发现我们把之前添加的某个FuckingLibray库从工程中去掉时,就能编译过了,就正常了.这下可以确定是FuckingLibray这个库在搞事情了,那我们还是通过<code>nm</code>来查看一下<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$: nm libFuckingLibray.a</span><br></pre></td></tr></table></figure></p>
+<p>在结果中查找一下 XXXXX”,结果发现找到了,好了,现在可以下结论了: FuckingLibray这个库把我们工程中使用的一个第三方库也编译进去了.</p>
+<p>如果一时找不到其它库替换这个FuckingLibray,那这下该怎么办呢,场面一度陷入江局.<br>下面我来告诉我怎么做:</p>
+<ul>
+<li>方法一: 将你工程中的 XXXX 这个库去掉, 编译+运行,完美解决</li>
+<li>方法二: 将编译进第三方库中的 XXXX这个库去掉,具体方法下面附上一个脚本:</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">#用法: 将要处理的第三方库放到指定文件夹下,并在此文件夹下执行下面的脚本</span></span><br><span class="line"><span class="comment">#  参数1: .a文件 或者xxx.framework/xxx</span></span><br><span class="line"><span class="comment">#  参数2: 需要删除的文件前缀</span></span><br><span class="line"></span><br><span class="line">$: ./xxx.sh libFuckingLibray.a MB</span><br><span class="line"><span class="comment">#如果执行脚本没有权限,则给脚本增加权限</span></span><br><span class="line"><span class="comment">#$: chmod 777 xxx.sh</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">#--------------------------------------------</span></span><br><span class="line"><span class="comment"># 将静态库按CPU指令集解压并删除指定前缀的.o文件,再重新打包</span></span><br><span class="line"><span class="comment"># param1: 静态库文件路径</span></span><br><span class="line"><span class="comment"># param2: CPU指令集</span></span><br><span class="line"><span class="comment"># param3: 要删除的文件前缀</span></span><br><span class="line"><span class="comment">#--------------------------------------------</span></span><br><span class="line"><span class="keyword">function</span> unpack &#123;</span><br><span class="line">	<span class="keyword">if</span> [ -d <span class="string">"<span class="variable">$&#123;2&#125;</span>"</span> ]; <span class="keyword">then</span></span><br><span class="line">		rm -rf <span class="variable">$&#123;2&#125;</span></span><br><span class="line">		mkdir <span class="variable">$&#123;2&#125;</span></span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">		mkdir <span class="variable">$&#123;2&#125;</span></span><br><span class="line">	<span class="keyword">fi</span></span><br><span class="line">	<span class="built_in">cd</span> <span class="variable">$&#123;2&#125;</span></span><br><span class="line">	lipo ../<span class="variable">$&#123;1&#125;</span> -thin <span class="variable">$&#123;2&#125;</span> -output lib-<span class="variable">$&#123;2&#125;</span>.a</span><br><span class="line">	ar -x lib-<span class="variable">$&#123;2&#125;</span>.a</span><br><span class="line">	rm -rf lib-<span class="variable">$&#123;2&#125;</span>.a</span><br><span class="line">	find ./ -name <span class="string">"<span class="variable">$&#123;3&#125;</span>*.o"</span> -<span class="built_in">exec</span> rm -rf &#123;&#125; \;</span><br><span class="line">	libtool -static -o ../lib-<span class="variable">$&#123;2&#125;</span>.a  *.o</span><br><span class="line">	<span class="built_in">cd</span> ..</span><br><span class="line">	rm -rf <span class="variable">$&#123;2&#125;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">#$1 第一个参数,查看库所支持的CPU指令集,并将查看结果字符串赋值给var</span></span><br><span class="line">var=$(lipo -info <span class="variable">$1</span>)</span><br><span class="line"><span class="keyword">if</span> [ $? != 0 ] ; <span class="keyword">then</span></span><br><span class="line">    <span class="built_in">exit</span> 1</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#从结果字符串中获取CPU指令集数组</span></span><br><span class="line"><span class="keyword">for</span> element <span class="keyword">in</span> <span class="variable">$&#123;var#*are:&#125;</span></span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">	unpack <span class="variable">$1</span> <span class="variable">$element</span> <span class="variable">$2</span></span><br><span class="line"><span class="keyword">done</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#将删除指定前缀后重新打包的各指令集的库合并成</span></span><br><span class="line">lipo -create lib-*.a -output <span class="variable">$1</span></span><br><span class="line">rm -rf lib-*.a</span><br></pre></td></tr></table></figure>
+<p>到此,问题算是解决了,大部分情况下工程也能正常编译了,但也会有一些隐患的,比如工程中使用了某个库的1.0.0版本, 而那个该死的不得不用的库把共用的库的2.0.0版本编译进去了,些时可能会出现一些API不兼容的情况,遇到这情况,要么工程升级共用的库到2.0.0版本,要么联系FuckingLibray的作者来更改实现.</p>
+<h3 id="1-3-unrecognized-selector-sent-to-class-0x1009beda8’"><a href="#1-3-unrecognized-selector-sent-to-class-0x1009beda8’" class="headerlink" title="1.3 unrecognized selector sent to class 0x1009beda8’"></a>1.3 unrecognized selector sent to class 0x1009beda8’</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Terminating app due to uncaught exception <span class="string">'NSInvalidArgumentException'</span>, reason: <span class="string">'+[FuckingLibray anythingOtherOperation]: unrecognized selector sent to class 0x1009beda8'</span></span><br></pre></td></tr></table></figure>
+<p><img src="http://7xtd84.com1.z0.glb.clouddn.com/baoman_004.png" alt=""></p>
+<p><strong>这TM又是怎么了？</strong></p>
+<p>当你使用第三方库时,调用一些第三方库中的分类中的方法时,会造成这种崩溃.<br>具体原因参考:<a href="https://developer.apple.com/library/content/qa/qa1490/_index.html" target="_blank" rel="noopener">苹果官方文档</a></p>
+<p>总结一下就是说OC没有为方法定义链接符号,只为类定义了链接符号.而分类只是一些方法的集合,链接器没有将分类中的对象加载进来,所以链接器不知道去哪找这个方法,所以就在链接阶段报错了.</p>
+<p>知道了原因,同时苹果告诉我们解决办法是在工程Build Setting中Other Linker Flags,添加 <code>-ObjC</code>. 但是这个<code>-ObjC</code>有一个BUG,就是当第三方库中只有分类而没有分类所属的类时,链接器还是不能将分类中的方法实现加载进来.所以就轮到<code>-all_laod</code>出场了,这个标识符可以让链接器把目标文件都加载进来.但是苹果也说了,加入这些链接标识符号会使生成的可执行文件变大,有时候我们只想针对某个库来添加,那么就又有了<code>-force-load</code>出场,这个标识符号的用法和前面两个不同,要在后面跟一个路径,<code>-force-load ${SDKPath}</code></p>
+<p>好了,这下问题解决了,command + R</p>
+<p><img src="http://7xtd84.com1.z0.glb.clouddn.com/baoman_003.jpg" alt=""></p>
+
+    </div>
+
+    
+
+    
+        <div class="post-tags">
+            <i class="fa fa-tags" aria-hidden="true"></i>
+            <a href="/tags/静态库/">#静态库</a>
+        </div>
+    
+
+    <!-- Comments -->
+    
+
+</div>
+        </section>
+
+    </div>
+</div>
+
+
+</div>
+
+<!-- Footer -->
+<div class="push"></div>
+
+<footer class="footer-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 footer-about">
+                <h2>About</h2>
+                <p>
+                    『目前就职于爱客仕网络科技有限公司,任高级iOS开发工程师</br>  喜欢音乐,喜欢游戏</br>   热爱和平,热爱大自然』
+                </p>
+            </div>
+            
+    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 recent-posts">
+        <h2>Recent Posts</h2>
+        <ul>
+            
+            <li>
+                <a class="footer-post" href="/2016/05/18/走近科学之静态库(二)/">走近科学之静态库(二)</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2016/05/18/走近科学之静态库(一)/">走近科学之静态库(一)</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2016/04/21/HelloWorld/">Hello World🌴</a>
+            </li>
+            
+        </ul>
+    </div>
+
+
+
+            
+<div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 footer-categories">
+    <h2>Categories</h2>
+    <ul>
+        
+        <li>
+            <a class="footer-post" href="/categories/Objective-C/">Objective-C</a>
+        </li>
+        
+    </ul>
+</div>
+
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <ul class="list-inline footer-social-icons">
+                    
+                    <li class="list-inline-item">
+                        <a href="https://github.com/FinderTiwk">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-github"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="mailto:136652711@qq.com">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-envelope-o"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="footer-copyright">
+                    Copyright © 2018 <a href="https://github.com/FinderTiwk">FinderTiwk</a>. All rights reserved. 
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- After footer scripts -->
+
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Tween Max -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.18.5/TweenMax.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Custom JavaScript -->
+<script src="/js/main.js"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>
