@@ -10,6 +10,16 @@
 
     <!--Description-->
     
+        <meta name="description" content="0x00 What?设计模式（Design Pattern）是一套被反复使用、多数人知晓的、经过分类的、代码设计经验的总结。
+设计模式分为三种类型，共23种。
+
+创建型模式：单例模式、抽象工厂模式、建造者模式、工厂模式、原型模式
+结构型模式：适配器模式、桥接模式、装饰模式、组合模式、外观模式、享元模式、代理模式
+行为型模式：模版方法模式、命令模式、迭代器模式、观察者模式、中介者模式、备忘录模式、解释器模式（Interpreter模式）、状态模式、策略模式、职责链模式(责任链模式)、访问者模式
+
+
+关于这些设计模式在OC下的实现,代码在 Github,每个模式都有对应的单元测试,仅供参考,如果写不的好,轻一点喷~">
+    
 
     <!--Author-->
     
@@ -18,7 +28,7 @@
 
     <!--Open Graph Title-->
     
-        <meta property="og:title" content="_Finder丶Tiwk"/>
+        <meta property="og:title" content="设计模式(开篇)"/>
     
 
     <!--Open Graph Description-->
@@ -29,7 +39,7 @@
 
     <!--Type page-->
     
-        <meta property="og:type" content="website" />
+        <meta property="og:type" content="article" />
     
 
     <!--Page Cover-->
@@ -41,7 +51,7 @@
     <!-- Title -->
     
 
-    <title>代码组织 - _Finder丶Tiwk</title>
+    <title>设计模式(开篇) - _Finder丶Tiwk</title>
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
@@ -122,9 +132,7 @@
 <div class="container">
 
     <!-- Main Content -->
-    
-
-<div class="row">
+    <div class="row">
     <div class="col-sm-12">
 
         <!--Title and Logo-->
@@ -132,25 +140,88 @@
     <div class="logo">
         <a href="/"><i class="logo-icon fa fa-paper-plane" aria-hidden="true"></i></a>
         
-            <h1 id="main-title" class="title">#代码组织</h1>
-        
     </div>
 </header>
 
-        <section class="main archive-container">
+        <section class="main">
             
-                <div class="archive-post">
-    <a href="/2016/05/08/AppDelegate代码组织/">
-        <span class="archive-date">
-            May 2016
-        </span>
-        AppDelegate代码组织
-    </a>
+<div class="post">
+
+    <div class="post-header">
+        <h1 class="title">
+            <a href="/2017/04/21/设计模式-序论/">
+                设计模式(开篇)
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2017-04-21</span>
+            
+            
+            
+                <span class="category">
+                    <a href="/categories/设计模式/">设计模式</a>
+                </span>
+            
+        </div>
+    </div>
+
+    <div class="content">
+
+        <!-- Gallery -->
+        
+
+        <!-- Post Content -->
+        <h2 id="0x00-What"><a href="#0x00-What" class="headerlink" title="0x00 What?"></a>0x00 What?</h2><p>设计模式（Design Pattern）是一套被反复使用、多数人知晓的、经过分类的、代码设计经验的总结。</p>
+<p>设计模式分为三种类型，共23种。</p>
+<ul>
+<li><strong>创建型模式：</strong><code>单例模式</code>、<code>抽象工厂模式</code>、<code>建造者模式</code>、<code>工厂模式</code>、<code>原型模式</code></li>
+<li><strong>结构型模式：</strong><code>适配器模式</code>、<code>桥接模式</code>、<code>装饰模式</code>、<code>组合模式</code>、<code>外观模式</code>、<code>享元模式</code>、<code>代理模式</code></li>
+<li><strong>行为型模式：</strong><code>模版方法模式</code>、<code>命令模式</code>、<code>迭代器模式</code>、<code>观察者模式</code>、<code>中介者模式</code>、<code>备忘录模式</code>、<code>解释器模式（Interpreter模式）</code>、<code>状态模式</code>、<code>策略模式</code>、<code>职责链模式(责任链模式)</code>、<code>访问者模式</code></li>
+</ul>
+<blockquote>
+<p>关于这些设计模式在OC下的实现,代码在 <a href="https://github.com/FinderTiwk/DesignPatterns">Github</a>,每个模式都有对应的单元测试,仅供参考,如果写不的好,轻一点喷~</p>
+</blockquote>
+<a id="more"></a>
+<h2 id="0x01-Principles"><a href="#0x01-Principles" class="headerlink" title="0x01 Principles"></a>0x01 Principles</h2><p>几大设计原则</p>
+<ul>
+<li><p>开闭原则</p>
+<blockquote>
+<p>对扩展开放，对修改关闭</p>
+</blockquote>
+</li>
+<li><p>里氏代换原则</p>
+<blockquote>
+<p>多态,继承,复用</p>
+</blockquote>
+</li>
+<li><p>接口隔离/单一原则</p>
+<blockquote>
+<p>一个接口只做一件事</p>
+</blockquote>
+</li>
+<li><p>合成/聚合复用原则</p>
+<blockquote>
+<p>多用聚合,少用继承,面向接口</p>
+</blockquote>
+</li>
+</ul>
+
+    </div>
+
+    
+
+    
+
+    <!-- Comments -->
+    
+
 </div>
-            
         </section>
+
     </div>
 </div>
+
 
 </div>
 
