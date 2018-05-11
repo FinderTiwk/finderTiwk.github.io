@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="0x00 AppDelegate为什么变成了垃圾堆？　　当应用越做越大，功能越来越多，接入的第三方库越来越多，当开发人员越来越多的时候，AppDelegate就会变的越来越胖。">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="_Finder丶Tiwk">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="AppDelegate代码组织"/>
+    
+
+    <!--Open Graph Description-->
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="_Finder丶Tiwk"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article" />
+    
+
+    <!--Page Cover-->
+    
+
+    <meta name="twitter:card" content="summary" />
+    
+
+    <!-- Title -->
+    
+
+    <title>AppDelegate代码组织 - _Finder丶Tiwk</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Google Analytics -->
+    
+
+
+</head>
+
+
+<body>
+
+<div class="bg-gradient"></div>
+<div class="bg-pattern"></div>
+
+<!-- Menu -->
+<!--Menu Links and Overlay-->
+<div class="menu-bg">
+    <div class="menu-container">
+        <ul>
+            
+            <li class="menu-item">
+                <a href="/">
+                    Home
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/categories">
+                    Categories
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/tags">
+                    Tags
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/archives">
+                    Archives
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/about.html">
+                    About
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+<!--Hamburger Icon-->
+<nav>
+    <a href="#menu"></a>
+</nav>
+
+<div class="container">
+
+    <!-- Main Content -->
+    <div class="row">
+    <div class="col-sm-12">
+
+        <!--Title and Logo-->
+        <header>
+    <div class="logo">
+        <a href="/"><i class="logo-icon fa fa-paper-plane" aria-hidden="true"></i></a>
+        
+    </div>
+</header>
+
+        <section class="main">
+            
+<div class="post">
+
+    <div class="post-header">
+        <h1 class="title">
+            <a href="/2016/05/08/AppDelegate代码组织/">
+                AppDelegate代码组织
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2016-05-08</span>
+            
+            
+            
+                <span class="category">
+                    <a href="/categories/Objective-C/">Objective-C</a>
+                </span>
+            
+        </div>
+    </div>
+
+    <div class="content">
+
+        <!-- Gallery -->
+        
+
+        <!-- Post Content -->
+        <h2 id="0x00-AppDelegate为什么变成了垃圾堆？"><a href="#0x00-AppDelegate为什么变成了垃圾堆？" class="headerlink" title="0x00 AppDelegate为什么变成了垃圾堆？"></a>0x00 AppDelegate为什么变成了垃圾堆？</h2><p>　　当应用越做越大，功能越来越多，接入的第三方库越来越多，当开发人员越来越多的时候，AppDelegate就会变的越来越胖。</p>
+<a id="more"></a>
+<p>　　那么下来接下来我们分析一下实际开发过程中我们都在AppDelegate里干什么？</p>
+<ul>
+<li>应用要处理一些URL(包括数据文件共享)</li>
+<li>接入推送通知</li>
+<li>处理3D Touch</li>
+<li>一些第三方SDK初始化</li>
+<li>其它数据操作处理…等等</li>
+</ul>
+<p>假设我们的应用上面的功能都要实现,那么你可以想像一下AppDelegate将会变成什么样子。那我们要怎么样优雅的处理这些东西呢？</p>
+<ul>
+<li>2B程序猿：用到哪个功能就往AppDelegate生命周期对应的方法里塞相关代码</li>
+<li>普通程序猿：将要实现的功能抽离成单独函数在对应的生命周期方法里调用</li>
+<li>文艺程序猿：就是今天这篇博文所要讲述的Category大法</li>
+</ul>
+<p>大家不要急，下面先简单的说一下Category&amp;ClassExtension。</p>
+<h2 id="0x01-Category"><a href="#0x01-Category" class="headerlink" title="0x01 Category"></a>0x01 Category</h2><p>Category的语法如下：</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">AnyObject</span> (<span class="title">FunctionName</span>)</span></span><br><span class="line">...</span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+<p>一提到Category大家第一想到的是它能为已有的类扩展一些方法，但是另外一个作用往往会被大家所忽视，那就是优雅的组织代码。在类组织结构上，Category 可以用来帮助拆分功能，让一个大型的类按功能不同分治管理。</p>
+<blockquote>
+<p>Category的在设计的层面上符合Decorator模式，如果我们把主类比作一个插板，那每个Category就相当于一个插件，可以随插随拔。</p>
+</blockquote>
+<blockquote>
+<p>Tips: 在Category里扩展方法请在方法名前加前缀,这是一个很好的习惯，不要问我为什么…:</p>
+</blockquote>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)ft_dosomething:(<span class="keyword">id</span>)obj;</span><br></pre></td></tr></table></figure>
+<h2 id="0x02-Class-Extension"><a href="#0x02-Class-Extension" class="headerlink" title="0x02 Class Extension"></a>0x02 Class Extension</h2><p>Class Extension语法如下：</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">AnyObject</span> ()</span></span><br><span class="line">...</span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+<p>最初开始苹果爹并没有支持ClassExtension,如果要添加私有成员变量那是一个非常痛苦的体验。直到大概四年前的 WWDC 终于宣布添加上了 Class Extension 的语法，当时底下的开发者们含泪报以了热烈掌声，它让类的封装变的更加得心用手。</p>
+<blockquote>
+<p>Tips: 在一个类里可以同时有N个Class Extension</p>
+</blockquote>
+<h2 id="0x03-Category-与-Class-Extension的对比"><a href="#0x03-Category-与-Class-Extension的对比" class="headerlink" title="0x03 Category 与 Class Extension的对比"></a>0x03 Category 与 Class Extension的对比</h2><p>Class Extension 和 Category 在语言机制上有着很大差别：Class Extension 在编译期就会将定义的 Ivar、属性、方法等直接合入主类，而 Category 在程序启动 Runtime Loading 时才会将属性（没 Ivar）和方法合入主类。Category不能直接添加成员变量，但是可以通过runtime里的objc association来实现，而Class Extension则可以直接添加成员变量</p>
+<p>如果使用clang查看一个文件的抽象语法树（AST）：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ clang -Xclang -ast-dump -fsyntax-only main.m</span><br></pre></td></tr></table></figure></p>
+<p>我们可以发现Class Extension 和 Category 在 AST 中的表示都是 ObjCCategoryDecl，只是有无名字的区别，也可以说Class Extension 就是一个匿名的Category。</p>
+<h2 id="0x04-进入正题"><a href="#0x04-进入正题" class="headerlink" title="0x04 进入正题"></a>0x04 进入正题</h2><p>铺垫，全都是铺垫，终于铺垫完了。</p>
+<p>我以我自己参加环信的编程大赛做的一个应用(经过添油加醋的)来举例说明。<br>我们要在Appdelegate里在进行环信SDK的初始化，要实现3D Touch，要接入Facebook开源的一个内存检测工具，还要进行一些数据处理。</p>
+<ul>
+<li><p>Step0:在工程中按功能创建分类,前在对应分类里实现对应的功能,如图：<br><img src="http://7xtd84.com2.z0.glb.clouddn.com/AppDelegateCategory.png" alt=""></p>
+</li>
+<li><p>Step1: 在AppDelegate.m导入对应功能的.h并在合适的位置调用，如图：<br><img src="http://7xtd84.com2.z0.glb.clouddn.com/AppDelegateCode.png" alt=""><br>大声告诉我,结过Category处理后的AppDelegate(<strong><em>没有经过Category处理前的场景自行脑补</em></strong>)是不是很瘦很苗条，逻辑清晰，简单易懂，童叟无欺。<br>假如某个功能有问题，我们只需要到对应的功能分类里去Debug.<br>假如现在我们想去掉某一个功能，我们只需要把#import “AppDelegate+xxxxx.h”删除，并删除对应功能的调用。是不是分分钟就去掉了。<br>假如我们又需要这个功能，是不是又可以很容易的添加进来。</p>
+</li>
+<li><p>Step2: 本篇博文到此结束….其实还没有完<br>下面我们看一下我是怎么实现Facebook内存检测工具分类的，因为它与其它几个分类稍有不同，先上图：<br><img src="http://7xtd84.com2.z0.glb.clouddn.com/AppDelegateFBMemory.png" alt=""><br>大家有没有发现，上图中有两处红色框，一处的的方法是 ‘+’号的，你们在回头去看AppDelegate.m里发现我并没有调用到此方法。还有一处‘memeoryProfiler’这个变量是哪里来的呢？</p>
+<ul>
+<li><p>先来解释第一个红框，因为这段代码要在main.m返回应用代码前调用，看图：<br><img src="http://7xtd84.com2.z0.glb.clouddn.com/AppDelegateMain.png" alt=""><br>是不是很优雅，在main.m里只引用了这个分类，并没有引用到这个内存检测工具类的具体类库，假如我们要删除此功能是不是很简单的呢。还有你们有没有发现我这个内存检测工具只是在Debug下起作用，正式上线的时候你不会希望用户来使用它的。</p>
+</li>
+<li><p>再来解释第二个红框，继续看图：<br><img src="http://7xtd84.com2.z0.glb.clouddn.com/AppDelegateH.png" alt=""><br>这个变量我是在AppDelegate里声明的，上面也提到，Category并不能直接添加属性变量，虽然我们可以通过runtime来做到，但如果你回过头看上面这个属性的初始化时你会发现重写setter/getter方法不是很容易，所以我把这个属性声明在这个地方。</p>
+</li>
+</ul>
+</li>
+<li><p>Step3: 这次真的结束了.<br>最后送大家一个胖AppDelegate或者说在AppDelegate里做了一些不合适的操作会引起的崩溃(<strong>Watch Dog 机制</strong>)：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Exception Type: 00000020 Exception Codes: 0x8badf00d</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<blockquote>
+<p><strong>0x8badf00d</strong>: 读做 “ate bad food”! (把数字换成字母，是不是很像 😼)该编码表示应用是因为发生watchdog超时而被iOS终止的。  通常是应用花费太多时间而无法启动、终止或响应用系统事件。<br><img src="http://7xtd84.com2.z0.glb.clouddn.com/watchDog.png" alt=""></p>
+</blockquote>
+<blockquote>
+<p>从iOS4.x开始，退出应用时，应用不会立即终止，而是退到后台。但是，如果你的应用响应不够快，操作系统有可能会终止你的应用，并产生一个崩溃日志。这些事件与下列UIApplicationDelegate方法相对应:</p>
+<ul>
+<li>application:didFinishLaunchingWithOptions:</li>
+<li>applicationWillResignActive:</li>
+<li>applicationDidEnterBackground:</li>
+<li>applicationWillEnterForeground:</li>
+<li>applicationDidBecomeActive:</li>
+<li>applicationWillTerminate:</li>
+</ul>
+</blockquote>
+<blockquote>
+<p>上面所有这些方法，应用只有有限的时间去完成处理。如果花费时间太长，操作系统将终止应用.你的崩溃日志里将会有以下一段异常类型和异常代码：</p>
+</blockquote>
+<blockquote>
+<p>当遇到这种崩溃时你要做的是查看崩溃日志，追踪是哪些代码阻塞了主线程做了耗时操作，并将其移到子线程中去。</p>
+</blockquote>
+<p>希望看完后会对你有所帮助，可以在其它类里举一反三。</p>
+<p>本文部分参考sunnyxx的博客里的这篇文章</p>
+<blockquote>
+<p><a href="http://blog.sunnyxx.com/2016/04/22/objc-class-extension-tips/#rd" target="_blank" rel="noopener">http://blog.sunnyxx.com/2016/04/22/objc-class-extension-tips/#rd</a></p>
+</blockquote>
+
+    </div>
+
+    
+
+    
+        <div class="post-tags">
+            <i class="fa fa-tags" aria-hidden="true"></i>
+            <a href="/tags/代码组织/">#代码组织</a>
+        </div>
+    
+
+    <!-- Comments -->
+    
+
+</div>
+        </section>
+
+    </div>
+</div>
+
+
+</div>
+
+<!-- Footer -->
+<div class="push"></div>
+
+<footer class="footer-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 footer-about">
+                <h2>About</h2>
+                <p>
+                    『目前就职于爱客仕网络科技有限公司,任高级iOS开发工程师</br>  喜欢音乐,喜欢游戏</br>   热爱和平,热爱大自然』
+                </p>
+            </div>
+            
+    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 recent-posts">
+        <h2>Recent Posts</h2>
+        <ul>
+            
+            <li>
+                <a class="footer-post" href="/2016/05/18/走近静态库(异常错误处理)/">走近静态库(异常错误处理)</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2016/05/18/走近静态库(资源)/">走近静态库(资源)</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2016/05/18/走近静态库(概述)/">走近静态库(概述)</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2016/05/08/AppDelegate代码组织/">AppDelegate代码组织</a>
+            </li>
+            
+        </ul>
+    </div>
+
+
+
+            
+<div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 footer-categories">
+    <h2>Categories</h2>
+    <ul>
+        
+        <li>
+            <a class="footer-post" href="/categories/Objective-C/">Objective-C</a>
+        </li>
+        
+    </ul>
+</div>
+
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <ul class="list-inline footer-social-icons">
+                    
+                    <li class="list-inline-item">
+                        <a href="https://github.com/FinderTiwk">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-github"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="mailto:136652711@qq.com">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-envelope-o"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="footer-copyright">
+                    Copyright © 2018 <a href="https://github.com/FinderTiwk">FinderTiwk</a>. All rights reserved. 
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- After footer scripts -->
+
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Tween Max -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.18.5/TweenMax.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Custom JavaScript -->
+<script src="/js/main.js"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>
