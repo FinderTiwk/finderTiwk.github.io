@@ -10,6 +10,13 @@
 
     <!--Description-->
     
+        <meta name="description" content="0x00 序时间：2016.04.23 - 2016.04.24
+地址：上海华纳风格酒店
+天气: 中雨
+人物: 一群iOS程序猿和业界大牛(唐巧, 图拉鼎,Tinyfool-郝培强…)，还有一个屌丝的我
+事件: 在Tink社区组织的SwiftConChina2016的交流分享大会上,由于Tinyfool老师的分享没有带来一些技术干货,而是讲了一些心历路程,从而引起一部喷子开喷,导致现场的气氛一直很怪异～
+由于出现了这样的事件，再加上这两天连续不段的阴雨天和车途劳顿,导致参加完会议感觉身心疲惫。">
+    
 
     <!--Author-->
     
@@ -18,7 +25,7 @@
 
     <!--Open Graph Title-->
     
-        <meta property="og:title" content="_Finder丶Tiwk"/>
+        <meta property="og:title" content="SwiftConChina2016参会感"/>
     
 
     <!--Open Graph Description-->
@@ -29,7 +36,7 @@
 
     <!--Type page-->
     
-        <meta property="og:type" content="website" />
+        <meta property="og:type" content="article" />
     
 
     <!--Page Cover-->
@@ -41,7 +48,7 @@
     <!-- Title -->
     
 
-    <title>_Finder丶Tiwk</title>
+    <title>SwiftConChina2016参会感 - _Finder丶Tiwk</title>
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
@@ -130,151 +137,14 @@
     <div class="logo">
         <a href="/"><i class="logo-icon fa fa-paper-plane" aria-hidden="true"></i></a>
         
-            <h1 id="main-title" class="title">_Finder丶Tiwk</h1>
-        
     </div>
 </header>
 
         <section class="main">
             
-                
 <div class="post">
 
-    <div class="post-header index">
-        <h1 class="title">
-            <a href="/2016/05/18/走近静态库(异常错误处理)/">
-                走近静态库(异常错误处理)
-            </a>
-        </h1>
-        <div class="post-info">
-            
-                <span class="date">2016-05-18</span>
-            
-            
-            
-                <span class="category">
-                    <a href="/categories/Objective-C/">Objective-C</a>
-                </span>
-            
-        </div>
-    </div>
-
-    
-        <div class="content">
-            <h2 id="0x00-进击的-a-framework"><a href="#0x00-进击的-a-framework" class="headerlink" title="0x00 进击的.a/.framework"></a>0x00 进击的.a/.framework</h2><blockquote>
-<p>那一天，人們回想起了<br>在它们支配下的恐懼…<br>以及被它们蹂躏屈辱……</p>
-</blockquote>
-        </div>
-        <a href="/2016/05/18/走近静态库(异常错误处理)/" class="read-more">Read More</a>
-    
-
-</div>
-            
-                
-<div class="post">
-
-    <div class="post-header index">
-        <h1 class="title">
-            <a href="/2016/05/18/走近静态库(资源)/">
-                走近静态库(资源)
-            </a>
-        </h1>
-        <div class="post-info">
-            
-                <span class="date">2016-05-18</span>
-            
-            
-            
-                <span class="category">
-                    <a href="/categories/Objective-C/">Objective-C</a>
-                </span>
-            
-        </div>
-    </div>
-
-    
-        <div class="content">
-            <h2 id="0x01-bundle"><a href="#0x01-bundle" class="headerlink" title="0x01 bundle"></a>0x01 bundle</h2><blockquote>
-<p>bundle实质是其实就是一个有后缀(.bundle)的文件夹</p>
-</blockquote>
-<p>在制作framework或者.a时,由于一些资源文件(图片,音频,storyboard,xib,xcassets,plist…等等)并不能直接编译到可执行文件中,这时就需要我们提供一个容器来管理这些资源文件,这就是我们今天要说的bundle</p>
-        </div>
-        <a href="/2016/05/18/走近静态库(资源)/" class="read-more">Read More</a>
-    
-
-</div>
-            
-                
-<div class="post">
-
-    <div class="post-header index">
-        <h1 class="title">
-            <a href="/2016/05/18/走近静态库(概述)/">
-                走近静态库(概述)
-            </a>
-        </h1>
-        <div class="post-info">
-            
-                <span class="date">2016-05-18</span>
-            
-            
-            
-                <span class="category">
-                    <a href="/categories/Objective-C/">Objective-C</a>
-                </span>
-            
-        </div>
-    </div>
-
-    
-        <div class="content">
-            <h2 id="0x00-What"><a href="#0x00-What" class="headerlink" title="0x00 What?"></a>0x00 What?</h2><p>库是共享代码的方式,通俗的讲就是把一个或者多个功能的实现相关代码打包成一个可供其它人直接使用的package.从本质上来讲库是一种可执行代码片段的二进制格式,可以被加载到内存中直接使用.</p>
-<p>iOS中的库分为静态库和动态库.</p>
-<ul>
-<li>静态库有.a(库的api头文件和.a可执行文件组成)和.framework(其实就是把可执行文件和.头文件都包含在里一个*.framework文件夹里)两种形式,实际应用中大多数第三库都以.a的形式提供.</li>
-<li>动态库有.dylib和.framework形式,后来苹果又使用.tbd形式取代了.dylib.</li>
-</ul>
-        </div>
-        <a href="/2016/05/18/走近静态库(概述)/" class="read-more">Read More</a>
-    
-
-</div>
-            
-                
-<div class="post">
-
-    <div class="post-header index">
-        <h1 class="title">
-            <a href="/2016/05/08/AppDelegate代码组织/">
-                AppDelegate代码组织
-            </a>
-        </h1>
-        <div class="post-info">
-            
-                <span class="date">2016-05-08</span>
-            
-            
-            
-                <span class="category">
-                    <a href="/categories/Objective-C/">Objective-C</a>
-                </span>
-            
-        </div>
-    </div>
-
-    
-        <div class="content">
-            <h2 id="0x00-AppDelegate为什么变成了垃圾堆？"><a href="#0x00-AppDelegate为什么变成了垃圾堆？" class="headerlink" title="0x00 AppDelegate为什么变成了垃圾堆？"></a>0x00 AppDelegate为什么变成了垃圾堆？</h2><p>　　当应用越做越大，功能越来越多，接入的第三方库越来越多，当开发人员越来越多的时候，AppDelegate就会变的越来越胖。</p>
-        </div>
-        <a href="/2016/05/08/AppDelegate代码组织/" class="read-more">Read More</a>
-    
-
-</div>
-            
-                
-<div class="post">
-
-    <div class="post-header index">
+    <div class="post-header">
         <h1 class="title">
             <a href="/2016/04/25/SwiftConChina2016/">
                 SwiftConChina2016参会感
@@ -293,63 +163,84 @@
         </div>
     </div>
 
-    
-        <div class="content">
-            <h2 id="0x00-序"><a href="#0x00-序" class="headerlink" title="0x00 序"></a>0x00 序</h2><p>时间：2016.04.23 - 2016.04.24</p>
+    <div class="content">
+
+        <!-- Gallery -->
+        
+
+        <!-- Post Content -->
+        <h2 id="0x00-序"><a href="#0x00-序" class="headerlink" title="0x00 序"></a>0x00 序</h2><p>时间：2016.04.23 - 2016.04.24</p>
 <p>地址：上海华纳风格酒店</p>
 <p>天气: 中雨</p>
 <p>人物: 一群iOS程序猿和业界大牛(唐巧, 图拉鼎,Tinyfool-郝培强…)，还有一个屌丝的我</p>
 <p>事件: 在Tink社区组织的SwiftConChina2016的交流分享大会上,由于Tinyfool老师的分享没有带来一些技术干货,而是讲了一些心历路程,从而引起一部喷子开喷,导致现场的气氛一直很怪异～</p>
 <p>由于出现了这样的事件，再加上这两天连续不段的阴雨天和车途劳顿,导致参加完会议感觉身心疲惫。</p>
-        </div>
-        <a href="/2016/04/25/SwiftConChina2016/" class="read-more">Read More</a>
-    
-
-</div>
-            
-                
-<div class="post">
-
-    <div class="post-header index">
-        <h1 class="title">
-            <a href="/2016/04/21/HelloWorld/">
-                Hello World🌴
-            </a>
-        </h1>
-        <div class="post-info">
-            
-                <span class="date">2016-04-21</span>
-            
-            
-            
-        </div>
-    </div>
-
-    
-        <div class="content">
-            <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="http://music.163.com/outchain/player?type=2&id=31209343&auto=1&height=66"></iframe>
-
-<blockquote>
-<p>没有什么比说一句Hello World更让人激动~<br>如果有那就两句</p>
+<a id="more"></a>
+<h2 id="0x01-我为什么要参加这种会议？"><a href="#0x01-我为什么要参加这种会议？" class="headerlink" title="0x01 我为什么要参加这种会议？"></a>0x01 我为什么要参加这种会议？</h2><ul>
+<li>想见见偶像们,毕竟是看他们的博客长大的，人还是需要一点信仰的。</li>
+<li>开阔一下视野</li>
+<li>了解一些业界的最新动态</li>
+<li>装装逼😼</li>
+<li>想通过会议学到一点东西<blockquote>
+<p>其实在短短的半个小时到一个小时内真的学不到太多东西，即使嘉宾讲的再好，也不可能全部吸收。我只是每次去听听他们都在讲什么，如果碰到感兴趣的，能记住一两个关键字就好了，当遇到这种情况的时候知道该从哪方面下手。</p>
 </blockquote>
-<div style="text-align:center">
-  <div class="github-card" data-user="FinderTiwk" data-repo="" data-width="400" data-theme="default" data-target="" data-client-id="" data-client-secret=""></div>
-</div>
-<script src="/github-card-lib/githubcard.js"></script>
+</li>
+</ul>
+<h2 id="0x02-针对这次大会的一点看法？"><a href="#0x02-针对这次大会的一点看法？" class="headerlink" title="0x02 针对这次大会的一点看法？"></a>0x02 针对这次大会的一点看法？</h2><ul>
+<li><p>我想了一下为什么会有那么多喷子来喷Tinyfool老师,无外乎就是觉的自己大老远花钱买票过来听不到干货，觉的自己亏了，觉的自己被举办方和嘉宾欺骗了；真是无力吐槽，现在iOS开发者收入也不会太低，也不缺那点钱吧，嘉宾和举办方组织这次大会也很累，就不能换们思考一下吗？好自私的一群人啊，你们是怎么融入程序员这个行业的，我的想象中程序员是一群单纯的,傻傻的只会和电脑斗智斗勇的那么一个群体….摩擦摩擦</p>
+</li>
+<li><p>在第二天下午竟然有热舞.有热舞.热舞.舞…总觉的这种场合下不太合适，也有可能是大会举办方为了安抚一下那群喷子吧。还有两天的会议，感觉那个场地不是很舒服，坐在后面看不太清楚，有时候keynote/ppt的字还很小，在后面要抬头看墙上的电视，治好了我多年的颈椎病。还有只有椅子没有桌子，记笔记或者用电脑不是很方便，我看到很多人在一边听嘉宾分享一边写bug🤔,好敬业，好辛苦。</p>
+</li>
+</ul>
+<h2 id="0x03-反思业界的怪现象"><a href="#0x03-反思业界的怪现象" class="headerlink" title="0x03 反思业界的怪现象"></a>0x03 反思业界的怪现象</h2><ul>
+<li><p>怪现象0: 程序员的表达能力都好差呀</p>
+<blockquote>
+<p>这个感觉是普通现象，我的印象中表达能力很好的程序员不太多，比如尚学堂的马士兵老师(我是看他视频长大的)，小码哥的李明杰老师(他的视频我也看过一些)，还有一些暂时想不起来了。我觉的谁要能出一本&lt;程序员21天精通表达&gt;的书肯定热卖。</p>
+</blockquote>
+</li>
+<li><p>怪现象1：总有人问英语怎么学？</p>
+<blockquote>
+<p>每次听到这个问题就想笑,这是多么幼稚的问题啊,就像Tinyfool老师说的，一个英语怎么学从10年前问到现在，有这个时间早点着手学，一年学不会学两年，肯花时间学脑残也能学会。</p>
+</blockquote>
+</li>
+<li><p>怪现象2：总有人问Swift(或其它东西)到底怎么样,未来怎么样，我们要不要用</p>
+<blockquote>
+<p>难道你就没有一点自己的判断力？这东西也才出来不久，谁又能说的准呢？再或者要不要用要结合自己或者公司的情况来看吧。</p>
+</blockquote>
+</li>
+<li><p>怪现象3: 伸手党好多</p>
+<blockquote>
+<p> 有一天在一个群里回答了一个人的问题，过一会另外一个人也来问问题，很简单的一个问题，半天谁也没有回答，结果这厮就开始刷屏，开始喷了；一方面问题很简单，另一方面，别人也没有义务专门来为你解答问题，还有一方面，有时候提问者自己连问题都描述不清楚，这样的东西让别人怎么作答。提问之前也不自己动手查一下，Google不会用，连百度也不会吗？我猜想这次的喷子里应该有一部分这样的人…</p>
+</blockquote>
+</li>
+<li><p>怪现象4:只重应用不重理论，见识短浅</p>
+<blockquote>
+<p>一些工作了好几年的程序员,一直会停留在某个阶段止步不前，原因大多都是只要会用这个东西就好了，不会去深究其中原理。日常工作无外乎增删改查，拖拖拽拽做一些界面；有些程序员只会针对一种语言来编写程序，技能池浅的可怜，自己也不会花时候去学一些其它领域的东西。还有些人认为设计模式这种东西一点用都没有，我在工程里不用也做的好好的；抱着这样的态度怎么能前进,只会被某种编程语言所支配，语言只是工具，思想才最重要。</p>
+</blockquote>
+</li>
+<li><p>怪现象5: 大家到评论里来补充吧😽</p>
+</li>
+</ul>
 
+    </div>
 
+    
+
+    
+        <div class="post-tags">
+            <i class="fa fa-tags" aria-hidden="true"></i>
+            <a href="/tags/参会游记/">#参会游记</a>
         </div>
     
 
+    <!-- Comments -->
+    
+
 </div>
-            
         </section>
+
     </div>
 </div>
-
-
-
-
 
 
 </div>
