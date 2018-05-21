@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="0x01 What?类似车间流水线的模式,各环节依次处理好自己的事.工程中常用于拦截器的设计.有单程链,往返链,
+1.0 优缺点
+优点:
+每个环节专注做好自己的事
+很容易新增/替换/删除节点,交换节点顺序
+
+
+缺点:
+一件完整的事务被细分为多个环节,增加了各环节的维护成本
+代码调试不容易,因为可以会出现循环递归调用">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="_Finder丶Tiwk">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="设计模式-责任链"/>
+    
+
+    <!--Open Graph Description-->
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="_Finder丶Tiwk"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article" />
+    
+
+    <!--Page Cover-->
+    
+
+    <meta name="twitter:card" content="summary" />
+    
+
+    <!-- Title -->
+    
+
+    <title>设计模式-责任链 - _Finder丶Tiwk</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Google Analytics -->
+    
+
+
+</head>
+
+
+<body>
+
+<div class="bg-gradient"></div>
+<div class="bg-pattern"></div>
+
+<!-- Menu -->
+<!--Menu Links and Overlay-->
+<div class="menu-bg">
+    <div class="menu-container">
+        <ul>
+            
+            <li class="menu-item">
+                <a href="/">
+                    Home
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/categories">
+                    Categories
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/tags">
+                    Tags
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/archives">
+                    Archives
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/about.html">
+                    About
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+<!--Hamburger Icon-->
+<nav>
+    <a href="#menu"></a>
+</nav>
+
+<div class="container">
+
+    <!-- Main Content -->
+    <div class="row">
+    <div class="col-sm-12">
+
+        <!--Title and Logo-->
+        <header>
+    <div class="logo">
+        <a href="/"><i class="logo-icon fa fa-paper-plane" aria-hidden="true"></i></a>
+        
+    </div>
+</header>
+
+        <section class="main">
+            
+<div class="post">
+
+    <div class="post-header">
+        <h1 class="title">
+            <a href="/2017/04/21/设计模式-责任链/">
+                设计模式-责任链
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2017-04-21</span>
+            
+            
+            
+                <span class="category">
+                    <a href="/categories/设计模式/">设计模式</a>
+                </span>
+            
+        </div>
+    </div>
+
+    <div class="content">
+
+        <!-- Gallery -->
+        
+
+        <!-- Post Content -->
+        <h2 id="0x01-What"><a href="#0x01-What" class="headerlink" title="0x01 What?"></a>0x01 What?</h2><p>类似车间流水线的模式,各环节依次处理好自己的事.<br>工程中常用于拦截器的设计.<br>有单程链,往返链,</p>
+<h3 id="1-0-优缺点"><a href="#1-0-优缺点" class="headerlink" title="1.0 优缺点"></a>1.0 优缺点</h3><ul>
+<li>优点:<ol>
+<li>每个环节专注做好自己的事</li>
+<li>很容易新增/替换/删除节点,交换节点顺序</li>
+</ol>
+</li>
+<li>缺点:<ol>
+<li>一件完整的事务被细分为多个环节,增加了各环节的维护成本</li>
+<li>代码调试不容易,因为可以会出现循环递归调用</li>
+</ol>
+</li>
+</ul>
+<a id="more"></a>
+<h2 id="0x02-How"><a href="#0x02-How" class="headerlink" title="0x02 How?"></a>0x02 How?</h2><h3 id="场景一"><a href="#场景一" class="headerlink" title="场景一:"></a>场景一:</h3><blockquote>
+<p>评论系统要屏蔽一些用户回复,比如一些敏感字眼, HTML标签, 还有一些其它的规则</p>
+</blockquote>
+<p>完整代码请在<a href="https://github.com/FinderTiwk/DesignPatterns">Github<designpatterns></designpatterns></a>以下目录查看,结合单元测试查看效果更加</p>
+<blockquote>
+<p>DesignPatterns/DesignPatterns/FilterChain/TextFilter/*<br>DesignPatterns/DesignPatternsTests/FilterChainTests.m</p>
+</blockquote>
+<p>step1: 创建过滤屏蔽协议</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">FOUNDATION_EXTERN <span class="built_in">NSString</span> *<span class="keyword">const</span> kHTMLTag_OLD;</span><br><span class="line">FOUNDATION_EXTERN <span class="built_in">NSString</span> *<span class="keyword">const</span> kHTMLTag_NEW;</span><br><span class="line"></span><br><span class="line"><span class="built_in">NS_INLINE</span> <span class="built_in">NSDictionary</span>* makeFilterRule(<span class="built_in">NSString</span> *htmlTag, <span class="built_in">NSString</span> *aString)&#123;</span><br><span class="line">    <span class="keyword">return</span> @&#123;kHTMLTag_OLD:htmlTag,</span><br><span class="line">             kHTMLTag_NEW:aString</span><br><span class="line">             &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@protocol</span> <span class="title">StringFilter</span> &lt;<span class="title">NSObject</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">@required</span></span><br><span class="line">- (<span class="built_in">NSString</span> *)filterString:(<span class="built_in">NSString</span> *)aString;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@optional</span></span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>,<span class="keyword">strong</span>) <span class="built_in">NSMutableArray</span>&lt;<span class="built_in">NSDictionary</span> *&gt; *filteRules;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> 添加过滤规则 eg: &#123;kHTMLTag_OLD: @"&lt;" ,kHTMLTag_NEW: @"["&#125;</span></span><br><span class="line"><span class="comment"> 将字符串中的html标签替换为其它字符串</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">@optional</span></span><br><span class="line">- (<span class="keyword">void</span>)addFilteRule:(<span class="built_in">NSDictionary</span> *)rule;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+<p>step2: 创建各种需要的过滤器<br><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">//HTML标签过滤器</span></span><br><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">HTMLFilter</span> : <span class="title">NSObject</span>&lt;<span class="title">StringFilter</span>&gt;</span></span><br><span class="line"><span class="keyword">@end</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">HTMLFilter</span></span></span><br><span class="line"><span class="keyword">@synthesize</span> filteRules;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">instancetype</span>)init&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">self</span> = [<span class="keyword">super</span> init]) &#123;</span><br><span class="line">        filteRules = [<span class="built_in">NSMutableArray</span> array];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">self</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)addFilteRule:(<span class="built_in">NSDictionary</span> *)rule&#123;</span><br><span class="line">    [<span class="keyword">self</span>.filteRules addObject:rule];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (<span class="built_in">NSString</span> *)filterString:(<span class="built_in">NSString</span> *)aString&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="built_in">NSDictionary</span> *rule <span class="keyword">in</span> <span class="keyword">self</span>.filteRules) &#123;</span><br><span class="line">        <span class="built_in">NSString</span> *old = rule[kHTMLTag_OLD];</span><br><span class="line">        <span class="built_in">NSString</span> *replaced = rule[kHTMLTag_NEW];</span><br><span class="line">        aString = [aString stringByReplacingOccurrencesOfString:old withString:replaced];   </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> aString;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//敏感字过滤器</span></span><br><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">SensitiveFilter</span> : <span class="title">NSObject</span>&lt;<span class="title">StringFilter</span>&gt;</span></span><br><span class="line"><span class="keyword">@end</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">SensitiveFilter</span></span></span><br><span class="line">- (<span class="keyword">void</span>)addFilteRule:(<span class="built_in">NSDictionary</span> *)rule&#123;</span><br><span class="line">    [<span class="keyword">self</span>.filteRules addObject:rule];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (<span class="built_in">NSString</span> *)filterString:(<span class="built_in">NSString</span> *)aString&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="built_in">NSDictionary</span> *rule <span class="keyword">in</span> <span class="keyword">self</span>.filteRules) &#123;</span><br><span class="line">        <span class="built_in">NSString</span> *old = rule[kHTMLTag_OLD];</span><br><span class="line">        <span class="built_in">NSString</span> *replaced = rule[kHTMLTag_NEW];</span><br><span class="line">        aString = [aString stringByReplacingOccurrencesOfString:old withString:replaced];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> aString;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">@end</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//其它过滤器</span></span><br><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">OtherFilter</span> : <span class="title">NSObject</span>&lt;<span class="title">StringFilter</span>&gt;</span></span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure></p>
+<p>step3: 创建响应链条<br><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//StringFilterChain.h</span></span><br><span class="line"><span class="comment">//由若干个环节组成一个链条,每个环节实现同一协议</span></span><br><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">StringFilterChain</span> : <span class="title">NSObject</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">//添加过滤器</span></span><br><span class="line">- (<span class="keyword">void</span>)addFilter:(<span class="keyword">id</span>&lt;StringFilter&gt;)filter;</span><br><span class="line"></span><br><span class="line"><span class="comment">//添加过滤器</span></span><br><span class="line">- (StringFilterChain* (^)(<span class="keyword">id</span>&lt;StringFilter&gt; filter))addFilter;</span><br><span class="line"></span><br><span class="line"><span class="comment">//执行过滤任务</span></span><br><span class="line">- (<span class="built_in">NSString</span> *)doFilterFor:(<span class="built_in">NSString</span> *)aString;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//StringFilterChain.m</span></span><br><span class="line">- (<span class="built_in">NSString</span> *)doFilterFor:(<span class="built_in">NSString</span> *)aString&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">id</span>&lt;StringFilter&gt; filter <span class="keyword">in</span> <span class="keyword">self</span>.filters) &#123;</span><br><span class="line">        aString = [filter filterString:aString];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> aString;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>step4: 构建响应链对象并使用<br><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">StringFilterChain *chain = [[StringFilterChain alloc] init];</span><br><span class="line"><span class="comment">//    id&lt;StringFilter&gt; filter1;</span></span><br><span class="line"><span class="comment">//    id&lt;StringFilter&gt; filter2;</span></span><br><span class="line"><span class="comment">//    id&lt;StringFilter&gt; filter3;</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line">   &#123;</span><br><span class="line">       HTMLFilter *filter = [[HTMLFilter alloc] init];</span><br><span class="line">       [filter addFilteRule:makeFilterRule(<span class="string">@"&lt;"</span>, <span class="string">@"["</span>)];</span><br><span class="line">       [filter addFilteRule:makeFilterRule(<span class="string">@"&gt;"</span>, <span class="string">@"]"</span>)];</span><br><span class="line">       [filter addFilteRule:makeFilterRule(<span class="string">@"&amp;"</span>, <span class="string">@" and "</span>)];</span><br><span class="line">       [chain addFilter:filter];</span><br><span class="line"><span class="comment">//        filter1 = filter;</span></span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   &#123;</span><br><span class="line">       SensitiveFilter *filter = [[SensitiveFilter alloc] init];</span><br><span class="line">       [filter addFilteRule:makeFilterRule(<span class="string">@"共产党"</span>, <span class="string">@"伟大领袖"</span>)];</span><br><span class="line">       [filter addFilteRule:makeFilterRule(<span class="string">@"敏感"</span>, <span class="string">@"不敏感"</span>)];</span><br><span class="line">       [filter addFilteRule:makeFilterRule(<span class="string">@"中国男足"</span>, <span class="string">@"男猪"</span>)];</span><br><span class="line">       [chain addFilter:filter];</span><br><span class="line"><span class="comment">//        filter2 = filter;</span></span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   &#123;</span><br><span class="line">       OtherFilter *filter = [[OtherFilter alloc] init];</span><br><span class="line">       [chain addFilter:filter];</span><br><span class="line"><span class="comment">//        filter3 = filter;</span></span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//    chain.addFilter(filter1).addFilter(filter2).addFilter(filter3);</span></span><br><span class="line">   <span class="built_in">NSString</span> *result = [chain doFilterFor:<span class="string">@"&lt;真是太敏感了&gt; &amp; 共产党万岁, other ..中国男足"</span>];</span><br><span class="line">   <span class="built_in">NSString</span> *expected = <span class="string">@"[真是太不敏感了]  and  伟大领袖万岁, 其它的过滤器 ..男猪"</span>;</span><br><span class="line">   <span class="built_in">XCTAssertTrue</span>([result isEqualToString:expected]);</span><br></pre></td></tr></table></figure></p>
+<h3 id="场景二"><a href="#场景二" class="headerlink" title="场景二:"></a>场景二:</h3><blockquote>
+<p>对网络请求添加各种前置后置处理(黑白名单,参数校验,安全签名加密等)</p>
+</blockquote>
+<p>完整代码请在<a href="https://github.com/FinderTiwk/DesignPatterns">Github<designpatterns></designpatterns></a>以下目录查看,结合单元测试查看效果更加</p>
+<blockquote>
+<p>DesignPatterns/DesignPatterns/FilterChain/NetworkingFilter/*<br>DesignPatterns/DesignPatternsTests/FilterChainTests.m</p>
+</blockquote>
+<p>step1: 创建协议</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NS_INLINE</span> <span class="built_in">NSError</span>* makeFilterError(<span class="built_in">NSUInteger</span> errorCode, <span class="built_in">NSString</span> *desc)&#123;</span><br><span class="line">    <span class="keyword">return</span> [<span class="built_in">NSError</span> errorWithDomain:<span class="string">@"com.finderTiwk"</span></span><br><span class="line">                               code:errorCode</span><br><span class="line">                           userInfo:@&#123;<span class="built_in">NSLocalizedDescriptionKey</span>:desc&#125;];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@class</span> <span class="title">NetworkingFilterChain</span>;</span></span><br><span class="line"><span class="class"><span class="keyword">@protocol</span> <span class="title">NetworkingFilter</span> &lt;<span class="title">NSObject</span>&gt;</span></span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)doFilterForRequest:(FTURLRequest *)request</span><br><span class="line">                  response:(FTURLResponse *)response</span><br><span class="line">                     chain:(NetworkingFilterChain *)chain</span><br><span class="line">                     error:(<span class="built_in">NSError</span> **)error;</span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+<p>step2: 创建各种需要的过滤器</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">//黑名单过滤器</span></span><br><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">NotFoundFilter</span> : <span class="title">NSObject</span>&lt;<span class="title">NetworkingFilter</span>&gt;</span></span><br><span class="line"><span class="keyword">@end</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">NotFoundFilter</span></span></span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)doFilterForRequest:(FTURLRequest *)request</span><br><span class="line">                  response:(FTURLResponse *)response</span><br><span class="line">                     chain:(NetworkingFilterChain *)chain</span><br><span class="line">                     error:(<span class="built_in">NSError</span> **)error&#123;</span><br><span class="line"></span><br><span class="line">    [<span class="keyword">self</span> checkRequest:request</span><br><span class="line">                 error:error];</span><br><span class="line"></span><br><span class="line">    [chain doFilterForRequest:request</span><br><span class="line">                     response:response</span><br><span class="line">                        chain:chain</span><br><span class="line">                        error:error];</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)checkRequest:(FTURLRequest *)aRequest</span><br><span class="line">               error:(<span class="built_in">NSError</span> **)error&#123;</span><br><span class="line">    <span class="keyword">if</span> ([<span class="keyword">self</span>.blackList containsObject:aRequest.interface]) &#123;</span><br><span class="line">        *error = makeFilterError(<span class="number">-1</span>, <span class="string">@"404 Not Found!"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//参数校验过滤器</span></span><br><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">ParameterFilter</span> : <span class="title">NSObject</span>&lt;<span class="title">NetworkingFilter</span>&gt;</span></span><br><span class="line"><span class="keyword">@end</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">ParameterFilter</span></span></span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)doFilterForRequest:(FTURLRequest *)request</span><br><span class="line">                  response:(FTURLResponse *)response</span><br><span class="line">                     chain:(NetworkingFilterChain *)chain</span><br><span class="line">                     error:(<span class="built_in">NSError</span> **)error&#123;</span><br><span class="line"></span><br><span class="line">    [<span class="keyword">self</span> checkRequest:request</span><br><span class="line">                 error:error];</span><br><span class="line"></span><br><span class="line">    [chain doFilterForRequest:request</span><br><span class="line">                     response:response</span><br><span class="line">                        chain:chain</span><br><span class="line">                        error:error];</span><br><span class="line">    <span class="keyword">if</span> (*error) &#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    [<span class="keyword">self</span> checkResponse:response</span><br><span class="line">                  error:error];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)checkRequest:(FTURLRequest *)aRequest</span><br><span class="line">               error:(<span class="built_in">NSError</span> **)error&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (!aRequest.domain ||</span><br><span class="line">        aRequest.domain.length == <span class="number">0</span>) &#123;</span><br><span class="line">        *error = makeFilterError(<span class="number">-1</span>, <span class="string">@"请求域名为空"</span>);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (!aRequest.interface ||</span><br><span class="line">        aRequest.interface.length == <span class="number">0</span>) &#123;</span><br><span class="line">        *error = makeFilterError(<span class="number">-1</span>, <span class="string">@"请求API为空"</span>);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (!aRequest.httpHeadField ||</span><br><span class="line">        aRequest.httpHeadField.allKeys.count == <span class="number">0</span>) &#123;</span><br><span class="line">        *error = makeFilterError(<span class="number">-1</span>, <span class="string">@"请求头为空"</span>);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)checkResponse:(FTURLResponse *)aResponse</span><br><span class="line">               error:(<span class="built_in">NSError</span> **)error&#123;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">NSInteger</span> responseCode = aResponse.statusCode;</span><br><span class="line">    <span class="keyword">if</span> (responseCode != <span class="number">200</span>) &#123;</span><br><span class="line"></span><br><span class="line">        <span class="built_in">NSString</span> *desc = [<span class="built_in">NSString</span> stringWithFormat:<span class="string">@"网络异常,请重试(%@)"</span>,@(responseCode)];</span><br><span class="line">        *error = makeFilterError(aResponse.statusCode, desc);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (!aResponse.retData ||</span><br><span class="line">        aResponse.retData.allKeys.count == <span class="number">0</span>) &#123;</span><br><span class="line">        *error = makeFilterError(<span class="number">-1</span>, <span class="string">@"返回数据为空"</span>);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//安全签名过滤器</span></span><br><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">NetworkingSecretFilter</span> : <span class="title">NSObject</span>&lt;<span class="title">NetworkingFilter</span>&gt;</span></span><br><span class="line"><span class="keyword">@end</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">NetworkingSecretFilter</span></span></span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)doFilterForRequest:(FTURLRequest *)request</span><br><span class="line">                  response:(FTURLResponse *)response</span><br><span class="line">                     chain:(NetworkingFilterChain *)chain</span><br><span class="line">                     error:(<span class="built_in">NSError</span> *__autoreleasing *)error&#123;</span><br><span class="line"></span><br><span class="line">    [<span class="keyword">self</span> encryptionFor:&amp;request];</span><br><span class="line"></span><br><span class="line">    [chain doFilterForRequest:request</span><br><span class="line">                     response:response</span><br><span class="line">                        chain:chain</span><br><span class="line">                        error:error];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (*error) &#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    [<span class="keyword">self</span> decryptionFor:response</span><br><span class="line">                  error:error];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//做加密处理</span></span><br><span class="line">- (<span class="keyword">void</span>)encryptionFor:(FTURLRequest **)aRequest&#123;</span><br><span class="line"></span><br><span class="line">    [(*aRequest) addValue:<span class="string">@"FinderTiwk"</span> forHTTPHeaderField:<span class="string">@"sign"</span>];</span><br><span class="line">    [(*aRequest) addValue:<span class="string">@"findertiwk.github.io"</span> forHTTPHeaderField:<span class="string">@"host"</span>];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//做验签处理</span></span><br><span class="line">- (<span class="keyword">void</span>)decryptionFor:(FTURLResponse *)aResponse</span><br><span class="line">                error:(<span class="built_in">NSError</span> **)error&#123;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">NSArray</span> *allHeadKeys = aResponse.allHeaderFields.allKeys;</span><br><span class="line">    <span class="keyword">if</span> (![allHeadKeys containsObject:<span class="string">@"host"</span>] ||</span><br><span class="line">        ![allHeadKeys containsObject:<span class="string">@"sign"</span>]) &#123;</span><br><span class="line">        *error = makeFilterError(<span class="number">-1</span>, <span class="string">@"无效的响应头"</span>);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (![aResponse.allHeaderFields[<span class="string">@"sign"</span>] isEqualToString:<span class="string">@"FinderTiwk"</span>]) &#123;</span><br><span class="line">        *error = makeFilterError(<span class="number">-1</span>, <span class="string">@"响应数据加密签名验证失败"</span>);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+<p>step3: 创建响应链条<br><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">//NetworkingFilterChain.h</span></span><br><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">NetworkingFilterChain</span> : <span class="title">NSObject</span>&lt;<span class="title">NetworkingFilter</span>&gt;</span></span><br><span class="line"></span><br><span class="line">- (NetworkingFilterChain* (^)(<span class="keyword">id</span>&lt;NetworkingFilter&gt; filter))addFilter;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//NetworkingFilterChain.m</span></span><br><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">NetworkingFilterChain</span>()</span></span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>,<span class="keyword">strong</span>) <span class="built_in">NSMutableArray</span>&lt;<span class="keyword">id</span>&lt;NetworkingFilter&gt;&gt; *filters;</span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>,<span class="keyword">assign</span>) <span class="built_in">NSUInteger</span> index;</span><br><span class="line"><span class="keyword">@end</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">NetworkingFilterChain</span></span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">- (<span class="keyword">instancetype</span>)init&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">self</span> = [<span class="keyword">super</span> init]) &#123;</span><br><span class="line">        _filters = [<span class="built_in">NSMutableArray</span> array];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">self</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (NetworkingFilterChain *(^)(<span class="keyword">id</span>&lt;NetworkingFilter&gt;))addFilter&#123;</span><br><span class="line">    <span class="keyword">return</span> ^(<span class="keyword">id</span>&lt;NetworkingFilter&gt; filter)&#123;</span><br><span class="line">        [<span class="keyword">self</span>.filters addObject:filter];</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">self</span>;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">#pragma mark - NetworkingFilter</span></span><br><span class="line">- (<span class="keyword">void</span>)doFilterForRequest:(FTURLRequest *)request</span><br><span class="line">                  response:(FTURLResponse *)response</span><br><span class="line">                     chain:(NetworkingFilterChain *)chain</span><br><span class="line">                     error:(<span class="built_in">NSError</span> *__autoreleasing *)error&#123;</span><br><span class="line">    <span class="keyword">if</span> (*error) &#123;</span><br><span class="line">        <span class="keyword">self</span>.index = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">self</span>.index == <span class="keyword">self</span>.filters.count) &#123;</span><br><span class="line">        <span class="keyword">self</span>.index = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">id</span>&lt;NetworkingFilter&gt; filter = <span class="keyword">self</span>.filters[<span class="keyword">self</span>.index++];</span><br><span class="line">    [filter doFilterForRequest:request</span><br><span class="line">                      response:response</span><br><span class="line">                         chain:<span class="keyword">self</span></span><br><span class="line">                         error:error];</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure></p>
+<p>step4: 构建并使用<br><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//FilterChainTests.m</span></span><br><span class="line">- (<span class="keyword">void</span>)setUp &#123;</span><br><span class="line">    [<span class="keyword">super</span> setUp];</span><br><span class="line">    <span class="keyword">self</span>.networkingChain = [[NetworkingFilterChain alloc] init];</span><br><span class="line">    <span class="keyword">self</span>.networkingChain.addFilter([NotFoundFilter new]);</span><br><span class="line">    <span class="keyword">self</span>.networkingChain.addFilter([ParameterFilter new]);</span><br><span class="line">    <span class="keyword">self</span>.networkingChain.addFilter([NetworkingSecretFilter new]);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">self</span>.request  = [[FTURLRequest alloc] init];</span><br><span class="line">    <span class="keyword">self</span>.request.requestMethod = FTRequestMethod_GET;</span><br><span class="line">    <span class="keyword">self</span>.request.domain = <span class="string">@"https://api.github.com"</span>;</span><br><span class="line">    <span class="keyword">self</span>.request.interface = <span class="string">@"/orgs/octokit/repos"</span>;</span><br><span class="line">    [<span class="keyword">self</span>.request addValue:<span class="string">@"application/json"</span> forHTTPHeaderField:<span class="string">@"Content-Type"</span>];</span><br><span class="line">    [<span class="keyword">self</span>.request addParam:<span class="string">@"finderTiwk"</span> forKey:<span class="string">@"usrename"</span>];</span><br><span class="line">    [<span class="keyword">self</span>.request addParam:@(<span class="number">1514739661000</span>) forKey:<span class="string">@"timestamp"</span>];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">self</span>.response = [[FTURLResponse alloc] init];</span><br><span class="line">    <span class="keyword">self</span>.response.statusCode = <span class="number">200</span>;</span><br><span class="line">    <span class="keyword">self</span>.response.retData = @&#123;</span><br><span class="line">                              <span class="string">@"code"</span>:<span class="string">@"0"</span>,</span><br><span class="line">                              <span class="string">@"result"</span>:@&#123;</span><br><span class="line">                                      <span class="string">@"name"</span>:<span class="string">@"FinderTiwk"</span>,</span><br><span class="line">                                      <span class="string">@"age"</span>:<span class="string">@"28"</span>,</span><br><span class="line">                                      <span class="string">@"email"</span>:<span class="string">@"136652711@qq.com"</span>,</span><br><span class="line">                                      &#125;</span><br><span class="line">                              &#125;;</span><br><span class="line">    <span class="built_in">NSError</span> *error;</span><br><span class="line">    [<span class="keyword">self</span>.networkingChain doFilterForRequest:<span class="keyword">self</span>.request</span><br><span class="line">                                    response:<span class="keyword">self</span>.response</span><br><span class="line">                                       chain:<span class="keyword">self</span>.networkingChain</span><br><span class="line">                                       error:&amp;error];</span><br><span class="line">    <span class="built_in">XCTAssertNil</span>(error);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="0x03-iOS系统中的响应链设计模式的应用"><a href="#0x03-iOS系统中的响应链设计模式的应用" class="headerlink" title="0x03 iOS系统中的响应链设计模式的应用"></a>0x03 iOS系统中的响应链设计模式的应用</h2><p>事件传递响应机制</p>
+<h3 id="1-事件传递"><a href="#1-事件传递" class="headerlink" title="1. 事件传递"></a>1. 事件传递</h3><p>UIApplication–&gt;UIWindow–&gt;递归找到最适配的事件接收者(遍历视图子控件时,从后向前,因为后加上来的控件在最上面)<br><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">UIView不能接收触摸事件的三种情况：</span></span><br><span class="line"><span class="comment">	不接受用户交互：userInteractionEnabled = NO;</span></span><br><span class="line"><span class="comment">	隐藏：hidden = YES;</span></span><br><span class="line"><span class="comment">	透明：alpha = 0.0~0.01</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//通过这两个方法来寻找能响应事件的控件</span></span><br><span class="line">- hitTest：withEvent：</span><br><span class="line">- pointInside: withEvent：</span><br></pre></td></tr></table></figure></p>
+<h3 id="2-事件响应"><a href="#2-事件响应" class="headerlink" title="2. 事件响应"></a>2. 事件响应</h3><p>最适合的控件——&gt;扔给父控制直到最上层控件 —-&gt;  最终到UIApplication,如果处理不了的话事件丢弃</p>
+
+    </div>
+
+    
+
+    
+        <div class="post-tags">
+            <i class="fa fa-tags" aria-hidden="true"></i>
+            <a href="/tags/内功心法/">#内功心法</a>
+        </div>
+    
+
+    <!-- Comments -->
+    
+
+</div>
+        </section>
+
+    </div>
+</div>
+
+
+</div>
+
+<!-- Footer -->
+<div class="push"></div>
+
+<footer class="footer-content">
+
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 footer-about">
+                <h2>About</h2>
+                <p>
+                    『目前就职于爱客仕网络科技有限公司,任高级iOS开发工程师</br>  喜欢音乐,喜欢游戏</br>   热爱和平,热爱大自然』
+                </p>
+            </div>
+            
+    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 recent-posts">
+        <h2>Recent Posts</h2>
+        <ul>
+            
+            <li>
+                <a class="footer-post" href="/2017/04/21/设计模式-单例/">设计模式-单例</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2017/04/21/设计模式-责任链/">设计模式-责任链</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2017/04/21/设计模式-序论/">设计模式(开篇)</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2016/05/18/走近静态库(异常错误处理)/">走近静态库(异常错误处理)</a>
+            </li>
+            
+        </ul>
+    </div>
+
+
+
+            
+<div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 footer-categories">
+    <h2>Categories</h2>
+    <ul>
+        
+        <li>
+            <a class="footer-post" href="/categories/Swift/">Swift</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/设计模式/">设计模式</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/ObjectiveC/">ObjectiveC</a>
+        </li>
+        
+    </ul>
+</div>
+
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <ul class="list-inline footer-social-icons">
+                    
+                    <li class="list-inline-item">
+                        <a href="https://github.com/FinderTiwk">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-github"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="mailto:136652711@qq.com">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-envelope-o"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+              <script type="text/javascript">
+                var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+                document.write(unescape("%3Cspan id='cnzz_stat_icon_1273714027'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1273714027%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));
+              </script>
+                <div class="footer-copyright">
+                    Copyright © 2018 <a href="https://github.com/FinderTiwk">FinderTiwk</a>. All rights reserved. 
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+<!-- After footer scripts -->
+
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Tween Max -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.18.5/TweenMax.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Custom JavaScript -->
+<script src="/js/main.js"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>

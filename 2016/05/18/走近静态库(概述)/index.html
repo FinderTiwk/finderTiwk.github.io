@@ -156,7 +156,7 @@ iOS中的库分为静态库和动态库.
             
             
                 <span class="category">
-                    <a href="/categories/Objective-C/">Objective-C</a>
+                    <a href="/categories/ObjectiveC/">ObjectiveC</a>
                 </span>
             
         </div>
@@ -178,7 +178,7 @@ iOS中的库分为静态库和动态库.
 <h3 id="1-0-静态库与动态库的区别"><a href="#1-0-静态库与动态库的区别" class="headerlink" title="1.0 静态库与动态库的区别"></a>1.0 静态库与动态库的区别</h3><blockquote>
 <p>库的加载时机: 在pre-main阶段,动态为由动态库加载器来加载到内存中</p>
 </blockquote>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Total pre-main time: 156.41 milliseconds (100.0%)</span><br><span class="line">         dylib loading time:  45.14 milliseconds (28.8%)</span><br><span class="line">        rebase/binding time:  27.77 milliseconds (17.7%)</span><br><span class="line">            ObjC setup time:  53.95 milliseconds (34.4%)</span><br><span class="line">           initializer time:  29.42 milliseconds (18.8%)</span><br><span class="line">           slowest intializers :</span><br><span class="line">               libSystem.dylib :   2.79 milliseconds (1.7%)</span><br><span class="line">                     xxx.dylib :  16.05 milliseconds (10.2%)</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Total pre-main time: 156.41 milliseconds (100.0%)</span><br><span class="line">         dylib loading time:  45.14 milliseconds (28.8%)</span><br><span class="line">        rebase/binding time:  27.77 milliseconds (17.7%)</span><br><span class="line">            ObjC setup time:  53.95 milliseconds (34.4%)</span><br><span class="line">           initializer time:  29.42 milliseconds (18.8%)</span><br><span class="line">           slowest intializers :</span><br><span class="line">               libSystem.dylib :   2.79 milliseconds (1.7%)</span><br><span class="line">                     xxx.dylib :  16.05 milliseconds (10.2%)</span><br></pre></td></tr></table></figure>
 <p>静态库:</p>
 <ul>
 <li>程序链接时会完整的拷贝到可执行文件中,多个程序多次使用会在内存中有多份</li>
@@ -214,7 +214,7 @@ iOS中的库分为静态库和动态库.
 <li><p>发布编译库工程的时候,将schem调整为Release模式</p>
 </li>
 <li><p>当你看到如下警告时,设置工程的Build Setting里Enable Clang Module Debuging -&gt;NO</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">note: Linking a static library that was built with -gmodules,</span><br><span class="line">but the module cache was not found.</span><br><span class="line">Redistributable static libraries should never be built with module debugging enabled.</span><br><span class="line">The debug experience will be degraded due to incomplete debug information.</span><br><span class="line">warning: /var/folders/nm/y29gjrfd64b8b8y0cgx5hhbc0000gn/C/org.llvm.clang.xxxxxx/ModuleCache/2VU6G8UDA25RM/CoreFoundation-271U74KHGUIO4.pcm: No such file or directory</span><br><span class="line">...</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">note: Linking a static library that was built with -gmodules,</span><br><span class="line">but the module cache was not found.</span><br><span class="line">Redistributable static libraries should never be built with module debugging enabled.</span><br><span class="line">The debug experience will be degraded due to incomplete debug information.</span><br><span class="line">warning: /var/folders/nm/y29gjrfd64b8b8y0cgx5hhbc0000gn/C/org.llvm.clang.xxxxxx/ModuleCache/2VU6G8UDA25RM/CoreFoundation-271U74KHGUIO4.pcm: No such file or directory</span><br><span class="line">...</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
 
@@ -264,15 +264,15 @@ iOS中的库分为静态库和动态库.
             </li>
             
             <li>
+                <a class="footer-post" href="/2017/04/21/设计模式-责任链/">设计模式-责任链</a>
+            </li>
+            
+            <li>
                 <a class="footer-post" href="/2017/04/21/设计模式-序论/">设计模式(开篇)</a>
             </li>
             
             <li>
                 <a class="footer-post" href="/2016/05/18/走近静态库(异常错误处理)/">走近静态库(异常错误处理)</a>
-            </li>
-            
-            <li>
-                <a class="footer-post" href="/2016/05/18/走近静态库(资源)/">走近静态库(资源)</a>
             </li>
             
         </ul>
@@ -294,7 +294,7 @@ iOS中的库分为静态库和动态库.
         </li>
         
         <li>
-            <a class="footer-post" href="/categories/Objective-C/">Objective-C</a>
+            <a class="footer-post" href="/categories/ObjectiveC/">ObjectiveC</a>
         </li>
         
     </ul>

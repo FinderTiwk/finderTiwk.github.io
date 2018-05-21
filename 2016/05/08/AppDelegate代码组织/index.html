@@ -152,7 +152,7 @@
             
             
                 <span class="category">
-                    <a href="/categories/Objective-C/">Objective-C</a>
+                    <a href="/categories/ObjectiveC/">ObjectiveC</a>
                 </span>
             
         </div>
@@ -182,7 +182,7 @@
 </ul>
 <p>大家不要急，下面先简单的说一下Category&amp;ClassExtension。</p>
 <h2 id="0x01-Category"><a href="#0x01-Category" class="headerlink" title="0x01 Category"></a>0x01 Category</h2><p>Category的语法如下：</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">AnyObject</span> (<span class="title">FunctionName</span>)</span></span><br><span class="line">...</span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">AnyObject</span> (<span class="title">FunctionName</span>)</span></span><br><span class="line">...</span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
 <p>一提到Category大家第一想到的是它能为已有的类扩展一些方法，但是另外一个作用往往会被大家所忽视，那就是优雅的组织代码。在类组织结构上，Category 可以用来帮助拆分功能，让一个大型的类按功能不同分治管理。</p>
 <blockquote>
 <p>Category的在设计的层面上符合Decorator模式，如果我们把主类比作一个插板，那每个Category就相当于一个插件，可以随插随拔。</p>
@@ -190,7 +190,7 @@
 <blockquote>
 <p>Tips: 在Category里扩展方法请在方法名前加前缀,这是一个很好的习惯，不要问我为什么…:</p>
 </blockquote>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)ft_dosomething:(<span class="keyword">id</span>)obj;</span><br></pre></td></tr></table></figure>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)ft_dosomething:(<span class="keyword">id</span>)obj;</span><br></pre></td></tr></table></figure>
 <h2 id="0x02-Class-Extension"><a href="#0x02-Class-Extension" class="headerlink" title="0x02 Class Extension"></a>0x02 Class Extension</h2><p>Class Extension语法如下：</p>
 <figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">AnyObject</span> ()</span></span><br><span class="line">...</span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
 <p>最初开始苹果爹并没有支持ClassExtension,如果要添加私有成员变量那是一个非常痛苦的体验。直到大概四年前的 WWDC 终于宣布添加上了 Class Extension 的语法，当时底下的开发者们含泪报以了热烈掌声，它让类的封装变的更加得心用手。</p>
@@ -291,15 +291,15 @@
             </li>
             
             <li>
+                <a class="footer-post" href="/2017/04/21/设计模式-责任链/">设计模式-责任链</a>
+            </li>
+            
+            <li>
                 <a class="footer-post" href="/2017/04/21/设计模式-序论/">设计模式(开篇)</a>
             </li>
             
             <li>
                 <a class="footer-post" href="/2016/05/18/走近静态库(异常错误处理)/">走近静态库(异常错误处理)</a>
-            </li>
-            
-            <li>
-                <a class="footer-post" href="/2016/05/18/走近静态库(资源)/">走近静态库(资源)</a>
             </li>
             
         </ul>
@@ -321,7 +321,7 @@
         </li>
         
         <li>
-            <a class="footer-post" href="/categories/Objective-C/">Objective-C</a>
+            <a class="footer-post" href="/categories/ObjectiveC/">ObjectiveC</a>
         </li>
         
     </ul>
